@@ -24,6 +24,7 @@ return {
     g.flags.asked_to_analyze_device = true
     g.flags.explain_ingredients = true
     say(holeegram, HOLEEGRAM(544, "Put the device in the opening below me, so I can analyse it."))
+    g:saveGame()
     return exit()
   end,
   intro = function()

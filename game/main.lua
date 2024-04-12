@@ -112,6 +112,14 @@ g.blocking_thread(function()
     g.rooms.present._objects.lee.hidden = g.flags.hide_lee
     g.characters.lee:change_room(nil)
 
+    if g.flags.collector_distracted then
+      local collector = g.characters.collector
+      collector:start_animation("E_distracted")
+      collector._animations["E_talk"]:toggle_visibility("headphones")
+      collector._animations["E_stand"]:toggle_visibility("headphones")
+      collector._animations["E_distracted"]:toggle_visibility("headphones")
+    end
+
     print("Save data loaded!")
     return
   end

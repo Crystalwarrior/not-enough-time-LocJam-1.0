@@ -105,6 +105,7 @@ collector.use_nowalk = {
 common.drawer_setup(room)
 local pick = room._objects.pick
 local poster = room._objects.poster
+pick.hidden = true
 pick.look_text = function()
   return LOOK(75, "Fishy.")
 end
@@ -113,6 +114,8 @@ pick.hotspot_text = function()
 end
 pick.interact_position = Vec2(35, 96)
 pick.interact = function()
+  if g.flags.got_pick then return end
+
   local ines = g.characters.ines
   return g.blocking_thread(function()
     ines:start_animation_thread("E_pick_high")
@@ -147,6 +150,8 @@ end
 poster.interact_direction = "E"
 poster.interact_position = pick.interact_position
 poster.interact = function()
+  if g.flags.poster_interacted then return end
+
   local ines = g.characters.ines
   return g.blocking_thread(function()
     say(ines, INES(82, "Hey, the pick the guitar player is holding doesn't look flat."))
@@ -159,6 +164,7 @@ poster.interact = function()
   end)
 end
 local new_poster = room._objects.new_poster
+new_poster.hidden = true
 local poster_en = love.graphics.newImage("assets/single_sprites/poster_english.png")
 local poster_tr = love.graphics.newImage("assets/single_sprites/poster_translated.png")
 new_poster._image = function()

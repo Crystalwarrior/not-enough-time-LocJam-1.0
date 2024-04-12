@@ -200,7 +200,7 @@ return {
         return options_looking()
       end)
     end
-    if not g.flags.asked_magnets_once or not g.flags.asked_about_magnets then
+    if not g.flags.asked_magnets_once and not g.flags.asked_about_magnets then
       option(ECHO(204, "Magnets. I need magnets."), function()
         g.flags.asked_magnets_once = true
         echo(ines)
@@ -211,9 +211,9 @@ return {
         say(ines, INES(206, "Damn."))
         return options_looking()
       end)
-    elseif not g.know_musicians_have_magnets then
+    elseif not g.flags.know_musicians_have_magnets then
       option(ECHO(207, "Are you REALLY sure you don't have magnets?"), function()
-        g.know_musicians_have_magnets = true
+        g.flags.know_musicians_have_magnets = true
         echo(ines)
         say(andrea, ANDREA(471, "Quite sure."))
         say(peppe, PEPPE(472, "We have no reason to lie to you."))
@@ -271,10 +271,11 @@ return {
             say(andrea, ANDREA(498, "May it rest in peace."))
             wait(2)
             say(ines, INES(214, "...I see."))
-            g:saveGame()
             option(ECHO(215, "Would you give me a guitar if I found your pick?"), pick)
             return selection()
           else
+            -- failsafe if the flag failed to trigger somehow
+            g.flags.know_about_pick = true
             echo(ines)
             say(peppe, PEPPE(499, "Find my missing pick and we have a deal."))
             return options_looking()
