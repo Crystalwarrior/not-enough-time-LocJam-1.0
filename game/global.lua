@@ -7,7 +7,7 @@ local M = {
     scale = 6,
 
     key = {
-        skip = ".",
+        skip = "lctrl",
         cutscene = "space",
         pause = "escape",
     },
