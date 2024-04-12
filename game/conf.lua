@@ -15,4 +15,5 @@ love.conf =  function(t)
     t.modules.sound = false
     t.modules.thread = false
     t.modules.video = false
+    t.console = true
 end
