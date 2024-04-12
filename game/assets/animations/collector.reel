@@ -1,0 +1,134 @@
+return {
+  animations = {
+    {
+      name = "E_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk0"},
+          visible = true
+        },
+        {
+          name = "headphones",
+          frames = {"headphones0"}
+        }
+      }
+    },
+    {
+      name = "S_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        },
+        {
+          name = "headphones",
+          frames = {"headphones"}
+        }
+      }
+    },
+    {
+      name = "E_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk0", "talk1", "talk2", "talk3", "talk4", "talk5", "talk6", "talk7", "talk8", "talk9", "talk10", "talk11"},
+          visible = true
+        },
+        {
+          name = "headphones",
+          frames = {"headphones0", "headphones0", "headphones0", "headphones0", "headphones0", "headphones0", "headphones0", "headphones0", "headphones0", "headphones0", "headphones0", "headphones0"}
+        }
+      }
+    },
+    {
+      name = "S_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_distracted",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"distracted0", "distracted1", "distracted2", "distracted3", "distracted4"},
+          visible = true
+        },
+        {
+          name = "headphones",
+          frames = {"headphones1", "headphones2", "headphones3", "headphones4", "headphones5"}
+        }
+      }
+    }
+  },
+  atlas = "../spritesheets/collector.lua",
+  basepoint_position = "TOP_LEFT",
+  basepoint_yshift = 0,
+  basepoint_xshift = -94
+}

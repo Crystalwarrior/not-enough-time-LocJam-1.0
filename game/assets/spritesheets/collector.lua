@@ -1,0 +1,302 @@
+return {
+  {
+    {
+      name = "Talk0",
+      x = 141,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "Talk1",
+      x = 160,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "Talk2",
+      x = 179,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "distracted0",
+      x = 2,
+      y = 13,
+      w = 33,
+      h = 60,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 78,
+      offset_y = 37
+    },
+    {
+      name = "distracted1",
+      x = 37,
+      y = 14,
+      w = 33,
+      h = 59,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 78,
+      offset_y = 38
+    },
+    {
+      name = "distracted2",
+      x = 107,
+      y = 16,
+      w = 32,
+      h = 57,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 81,
+      offset_y = 40
+    },
+    {
+      name = "distracted3",
+      x = 72,
+      y = 16,
+      w = 33,
+      h = 57,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 79,
+      offset_y = 40
+    },
+    {
+      name = "distracted4",
+      x = 37,
+      y = 14,
+      w = 33,
+      h = 59,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 78,
+      offset_y = 38
+    },
+    {
+      name = "headphones0",
+      x = 15,
+      y = 2,
+      w = 10,
+      h = 9,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 87,
+      offset_y = 38
+    },
+    {
+      name = "headphones1",
+      x = 2,
+      y = 2,
+      w = 11,
+      h = 9,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 84,
+      offset_y = 38
+    },
+    {
+      name = "headphones2",
+      x = 2,
+      y = 2,
+      w = 11,
+      h = 9,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 87,
+      offset_y = 39
+    },
+    {
+      name = "headphones3",
+      x = 2,
+      y = 2,
+      w = 11,
+      h = 9,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 94,
+      offset_y = 41
+    },
+    {
+      name = "headphones4",
+      x = 2,
+      y = 2,
+      w = 11,
+      h = 9,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 89,
+      offset_y = 40
+    },
+    {
+      name = "headphones5",
+      x = 2,
+      y = 2,
+      w = 11,
+      h = 9,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 87,
+      offset_y = 39
+    },
+    {
+      name = "stand0",
+      x = 198,
+      y = 11,
+      w = 17,
+      h = 62,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk0",
+      x = 141,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk1",
+      x = 160,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk10",
+      x = 236,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk11",
+      x = 236,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk2",
+      x = 179,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk3",
+      x = 217,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk4",
+      x = 217,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk5",
+      x = 236,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk6",
+      x = 255,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk7",
+      x = 274,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk8",
+      x = 293,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    {
+      name = "talk9",
+      x = 217,
+      y = 12,
+      w = 17,
+      h = 61,
+      orig_w = 240,
+      orig_h = 135,
+      offset_x = 85,
+      offset_y = 36
+    },
+    filename = "collector.png"
+  }
+}

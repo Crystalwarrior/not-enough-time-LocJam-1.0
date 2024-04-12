@@ -1,0 +1,173 @@
+return {
+  atlas = "../spritesheets/room_present.lua",
+  background = {
+    "van"
+  },
+  bounds = {{ 0, 0 }, { 240, 135 }},
+  layers = {
+    {
+      name = "wheels",
+      parallax = {1, 1},
+      zsort = -1
+    },
+    {
+      "foreground",
+      parallax = {1, 1},
+      zsort = 1
+    }
+  },
+  navigation = {
+    {
+      {{201,100},{202,103},{192,99},{190,97}},
+      {{190,97},{192,99},{173,98},{172,96}},
+      {{164,104},{92,104},{92,99},{163,99}},
+      {{173,98},{164,104},{163,99},{172,96}}
+    }
+  },
+  objects = {
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          31,
+          68
+        },
+        {
+          61,
+          99
+        }
+      },
+      name = "backseat",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "drawer_closed"
+          },
+          name = "closed"
+        },
+        {
+          frames = {
+            "drawer_open"
+          },
+          name = "open"
+        }
+      },
+      baseline = 0,
+      hotspot = {
+        {
+          214,
+          80
+        },
+        {
+          221,
+          89
+        }
+      },
+      name = "drawer",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "exterior"
+          },
+          name = "default"
+        }
+      },
+      baseline = 0,
+      layer = 2,
+      name = "exterior",
+      position = {0, 0}
+    },
+    {
+      animations = {},
+      baseline = 0,
+      hotspot = {
+        {
+          168,
+          45
+        },
+        {
+          188,
+          85
+        }
+      },
+      name = "lee",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "navigator"
+          },
+          name = "default"
+        }
+      },
+      baseline = 0,
+      hotspot = {
+        {
+          178,
+          78
+        },
+        {
+          188,
+          83
+        }
+      },
+      name = "navigator",
+      position = {0, 0}
+    },
+    {
+      hotspot = {
+        {
+          49,
+          31
+        },
+        {
+          82,
+          78
+        }
+      },
+      name = "plant",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          fps = 5,
+          frames = {
+            "Ruote1",
+            "Ruote2"
+          },
+          loop = true,
+          name = "default"
+        }
+      },
+      baseline = 0,
+      layer = 1,
+      name = "wheels",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          80,
+          36
+        },
+        {
+          160,
+          55
+        }
+      },
+      name = "windows",
+      position = {0, 0}
+    }
+  },
+  scaling = {}
+}

@@ -1,0 +1,106 @@
+return {
+  animations = {
+    {
+      name = "E_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk0", "talk1", "talk2", "talk3", "talk4", "talk5", "talk6", "talk7"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand0"},
+          visible = true
+        }
+      }
+    }
+  },
+  atlas = "../spritesheets/holeegram.lua",
+  basepoint_position = "BOTTOM_CENTER",
+  basepoint_yshift = -2
+}

@@ -1,0 +1,128 @@
+return {
+  animations = {
+    {
+      name = "E_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1", "talk2", "talk3", "talk4", "talk5", "talk6", "talk7", "talk8"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "remote_up",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"remote1", "remote2", "remote3", "remote4", "remote5", "remote6", "remote7", "remote8", "remote9", "remote10", "remote11", "remote12", "remote13", "remote14"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "remote_down",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"remote10", "remote9", "remote8", "remote7", "remote6", "remote5", "remote4", "remote3", "remote2", "remote1"},
+          visible = true
+        }
+      }
+    }
+  },
+  atlas = "../spritesheets/lee.lua",
+  basepoint_position = "TOP_LEFT",
+  basepoint_yshift = 0
+}

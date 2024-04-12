@@ -1,0 +1,106 @@
+return {
+  animations = {
+    {
+      name = "E_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk10"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1", "talk3", "talk2", "talk4", "talk5", "talk6", "talk7", "talk8", "talk9", "talk10", "talk11", "talk12"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1"},
+          visible = true
+        }
+      }
+    }
+  },
+  atlas = "../spritesheets/president_ines.lua",
+  basepoint_position = "BOTTOM_CENTER",
+  basepoint_yshift = -2
+}

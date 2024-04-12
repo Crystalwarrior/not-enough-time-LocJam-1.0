@@ -1,0 +1,128 @@
+return {
+  animations = {
+    {
+      name = "E_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_stand",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_walk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "E_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"talk1", "talk2", "talk3", "talk4", "talk5", "talk6", "talk7", "talk8", "talk9", "talk10", "talk11", "talk12"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "S_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "N_talk",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"stand"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "play_anticipation",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"Anticipation0", "Anticipation1", "Anticipation2", "Anticipation3", "Anticipation4", "Anticipation5", "Anticipation6", "Anticipation7", "Anticipation8"},
+          visible = true
+        }
+      }
+    },
+    {
+      name = "play_loop",
+      fps = 12,
+      layers = {
+        {
+          name = "body",
+          frames = {"Loop0", "Loop1", "Loop2", "Loop3", "Loop4", "Loop5", "Loop6", "Loop7", "Loop8", "Loop9", "Loop10", "Loop11", "Loop12", "Loop13", "Loop14", "Loop15", "Loop16", "Loop17", "Loop18", "Loop19", "Loop20", "Loop21", "Loop22", "Loop23", "Loop24", "Loop25", "Loop26", "Loop27", "Loop28", "Loop29", "Loop30", "Loop31"},
+          visible = true
+        }
+      }
+    }
+  },
+  atlas = "../spritesheets/paolo.lua",
+  basepoint_position = "TOP_LEFT",
+  basepoint_yshift = 0
+}

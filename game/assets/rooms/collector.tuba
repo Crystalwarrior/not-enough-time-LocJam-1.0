@@ -1,0 +1,253 @@
+return {
+  atlas = "../spritesheets/room_collector.lua",
+  background = {
+    "van"
+  },
+  bounds = {{ 0, 0 }, { 240, 135 }},
+  layers = {
+    {
+      name = "wheels",
+      parallax = {1, 1},
+      zsort = -1
+    },
+    {
+      "foreground",
+      parallax = {1, 1},
+      zsort = 1
+    }
+  },
+  navigation = {
+    {
+      {{75,97},{42,96},{45,94},{75,95}},
+      {{201,100},{202,103},{192,99},{190,97}},
+      {{190,97},{192,99},{173,98},{172,96}},
+      {{84,104},{75,97},{75,95},{82,99},{87,102}},
+      {{164,104},{84,104},{87,102},{107,102}},
+      {{164,104},{107,102},{112,99},{163,99}},
+      {{173,98},{164,104},{163,99},{172,96}}
+    }
+  },
+  objects = {
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          159,
+          60
+        },
+        {
+          182,
+          66
+        }
+      },
+      name = "books",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          160,
+          72
+        },
+        {
+          183,
+          77
+        }
+      },
+      name = "cds",
+      position = {0, 0}
+    },
+    {
+      animations = {},
+      baseline = 0,
+      hotspot = {
+        {
+          85,
+          38
+        },
+        {
+          106,
+          98
+        }
+      },
+      name = "collector",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "drawer_closed"
+          },
+          name = "closed"
+        },
+        {
+          frames = {
+            "drawer_open"
+          },
+          name = "open"
+        }
+      },
+      baseline = 0,
+      hotspot = {
+        {
+          214,
+          80
+        },
+        {
+          221,
+          89
+        }
+      },
+      name = "drawer",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          135,
+          45
+        },
+        {
+          155,
+          57
+        }
+      },
+      name = "lps",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {},
+          name = "default"
+        }
+      },
+      baseline = 0,
+      name = "new_poster",
+      position = {0, 0}
+    },
+    {
+      animations = {},
+      baseline = 0,
+      hotspot = {
+        {
+          53,
+          42
+        },
+        {
+          59,
+          46
+        }
+      },
+      name = "pick",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          15,
+          62
+        },
+        {
+          30,
+          97
+        }
+      },
+      name = "plant",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "poster_pick"
+          },
+          name = "pick"
+        },
+        {
+          frames = {
+            "poster"
+          },
+          name = "no_pick"
+        },
+        {
+          frames = {},
+          name = "changed"
+        }
+      },
+      baseline = -1,
+      hotspot = {
+        {
+          46,
+          35
+        },
+        {
+          70,
+          80
+        }
+      },
+      name = "poster",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "recorder"
+          },
+          name = "default"
+        }
+      },
+      baseline = 0,
+      hotspot = {
+        {
+          120,
+          63
+        },
+        {
+          130,
+          79
+        }
+      },
+      name = "recorder",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          133,
+          67
+        },
+        {
+          157,
+          79
+        }
+      },
+      name = "stereo",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          fps = 5,
+          frames = {
+            "Ruote1",
+            "Ruote2"
+          },
+          loop = true,
+          name = "default"
+        }
+      },
+      baseline = 0,
+      layer = 1,
+      name = "wheels",
+      position = {0, 0}
+    }
+  },
+  scaling = {}
+}

@@ -1,0 +1,193 @@
+return {
+  atlas = "../spritesheets/room_past.lua",
+  background = {
+    "van"
+  },
+  bounds = {{ 0, 0 }, { 240, 135 }},
+  layers = {
+    {
+      name = "wheels",
+      parallax = {1, 1},
+      zsort = -1
+    },
+    {
+      "foreground",
+      parallax = {1, 1},
+      zsort = 1
+    }
+  },
+  navigation = {
+    {
+      {{164,104},{103,104},{104,103},{156,102}},
+      {{173,98},{164,104},{156,102},{163,99},{172,96}},
+      {{201,100},{202,103},{192,99},{190,97}},
+      {{190,97},{192,99},{173,98},{172,96}}
+    }
+  },
+  objects = {
+    {
+      animations = {
+        {
+          frames = {},
+          name = "default"
+        },
+        {
+          fps = 10,
+          frames = {
+            "destroy1",
+            "destroy2",
+            "destroy3",
+            "destroy4",
+            "destroy5",
+            "destroy6",
+            "destroy7",
+            "destroy8",
+            "destroy9",
+            "destroy10",
+            "destroy11",
+            "destroy12",
+            "destroy13",
+            "destroy14",
+            "destroy15",
+            "destroy16",
+            "destroy17",
+            "destroy18",
+            "destroy19",
+            "destroy20",
+            "destroy21",
+            "destroy22",
+            "destroy23",
+            "destroy24",
+            "destroy25",
+            "destroy26",
+            "destroy27",
+            "destroy28",
+            "destroy29",
+            "destroy30",
+            "destroy31",
+            "destroy32",
+            "destroy33",
+            "destroy34",
+            "destroy35",
+            "destroy36",
+            "destroy37",
+            "destroy38",
+            "destroy39",
+            "destroy40",
+            "destroy41",
+            "destroy42",
+            "destroy43",
+            "destroy44",
+            "destroy45",
+            "destroy46",
+            "destroy47",
+            "destroy48",
+            "destroy49",
+            "destroy50",
+            "destroy51",
+            "destroy52",
+            "destroy53",
+            "destroy54",
+            "destroy55",
+            "destroy55",
+            "destroy55",
+            "destroy55",
+            "destroy55",
+            "destroy56",
+            "destroy57",
+            "destroy58",
+            "destroy59",
+            "destroy60"
+          },
+          name = "on"
+        }
+      },
+      baseline = 0,
+      name = "destroy",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "drawer_closed"
+          },
+          name = "closed"
+        },
+        {
+          frames = {
+            "drawer_open"
+          },
+          name = "open"
+        }
+      },
+      baseline = 0,
+      hotspot = {
+        {
+          214,
+          80
+        },
+        {
+          221,
+          89
+        }
+      },
+      name = "drawer",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          31,
+          39
+        },
+        {
+          59,
+          56
+        }
+      },
+      name = "plant",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          fps = 5,
+          frames = {
+            "Ruote1",
+            "Ruote2"
+          },
+          loop = true,
+          name = "default"
+        }
+      },
+      baseline = 0,
+      layer = 1,
+      name = "wheels",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {},
+          name = "default"
+        }
+      },
+      baseline = 0,
+      hotspot = {
+        {
+          59,
+          51
+        },
+        {
+          145,
+          98
+        }
+      },
+      name = "wilson",
+      position = {0, 0}
+    }
+  },
+  scaling = {}
+}

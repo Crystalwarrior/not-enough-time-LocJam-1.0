@@ -1,0 +1,202 @@
+return {
+  atlas = "../spritesheets/room_future.lua",
+  background = {
+    "van"
+  },
+  bounds = {{ 0, 0 }, { 240, 135 }},
+  layers = {
+    {
+      name = "wheels",
+      parallax = {1, 1},
+      zsort = -1
+    },
+    {
+      "foreground",
+      parallax = {1, 1},
+      zsort = 1
+    }
+  },
+  navigation = {
+    {
+      {{201,100},{202,103},{192,99},{190,97}},
+      {{190,97},{192,99},{173,98},{172,96}},
+      {{98,104},{98,99},{102,99},{105,102}},
+      {{164,104},{98,104},{105,102},{132,102}},
+      {{164,104},{132,102},{136,99},{163,99}},
+      {{173,98},{164,104},{163,99},{172,96}},
+      {{64,95},{64,97},{46,96},{46,94}}
+    }
+  },
+  objects = {
+    {
+      animations = {
+        {
+          frames = {
+            "coin"
+          },
+          name = "default"
+        }
+      },
+      baseline = 0,
+      hotspot = {
+        {
+          26,
+          60
+        },
+        {
+          30,
+          64
+        }
+      },
+      name = "coin",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "drawer_closed"
+          },
+          name = "closed"
+        },
+        {
+          frames = {
+            "drawer_open"
+          },
+          name = "open"
+        }
+      },
+      baseline = 0,
+      hotspot = {
+        {
+          214,
+          80
+        },
+        {
+          221,
+          89
+        }
+      },
+      name = "drawer",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          109,
+          46
+        },
+        {
+          127,
+          73
+        }
+      },
+      name = "holeegram",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "laser"
+          },
+          name = "default"
+        }
+      },
+      baseline = -1000,
+      name = "laser",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "laser_side"
+          },
+          name = "default"
+        }
+      },
+      baseline = 0,
+      name = "laser_side",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          frames = {
+            "lights"
+          },
+          name = "default"
+        }
+      },
+      baseline = -1000,
+      name = "lights",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          110,
+          91
+        },
+        {
+          125,
+          96
+        }
+      },
+      name = "opening",
+      position = {0, 0}
+    },
+    {
+      animations = {},
+      baseline = 0,
+      hotspot = {
+        {
+          31,
+          71
+        },
+        {
+          36,
+          78
+        }
+      },
+      name = "plate",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
+          fps = 5,
+          frames = {
+            "Ruote1",
+            "Ruote2"
+          },
+          loop = true,
+          name = "default"
+        }
+      },
+      baseline = 0,
+      layer = 1,
+      name = "wheels",
+      position = {0, 0}
+    },
+    {
+      baseline = 0,
+      hotspot = {
+        {
+          33,
+          36
+        },
+        {
+          181,
+          55
+        }
+      },
+      name = "windows",
+      position = {0, 0}
+    }
+  },
+  scaling = {}
+}
