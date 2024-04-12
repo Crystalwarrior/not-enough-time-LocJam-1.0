@@ -90,6 +90,7 @@ g.blocking_thread(function()
     g.rooms.present._objects.exterior.hidden = true
     g.intro = false
     require("vortex").on = true
+    require("road").on = false
     require("ui.inventory").hidden = false
     audio.start_music()
     audio.set_parameter("room", 2)
