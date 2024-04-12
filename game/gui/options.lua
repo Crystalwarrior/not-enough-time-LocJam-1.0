@@ -20,6 +20,7 @@ end
 buttons.back.props.callback = function()
   local gui = require("gui")
   g.paused = false
+  g:saveOptions()
   return gui:set_menu(not g.game_started and "start" or nil)
 end
 local checkboxes = {
@@ -54,6 +55,8 @@ end
 local M = { }
 M.update = function(self)
   pointer:setPosition(g.p.x, g.p.y)
+  checkboxes.skip_left.props.checked = g.skip_with_left
+  checkboxes.skip_right.props.checked = g.skip_with_right
   checkboxes.fullscreen.props.checked = g.fullscreen
 end
 local menu_padding = 11

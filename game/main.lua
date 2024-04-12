@@ -31,6 +31,7 @@ LOOK = tr
 ECHO = tr
 NOECHO = tr
 g = require("global")
+g:loadOptions()
 local thread_registry = lc.ThreadRegistry()
 g.thread_registry = thread_registry
 g.start_thread = function(f)
