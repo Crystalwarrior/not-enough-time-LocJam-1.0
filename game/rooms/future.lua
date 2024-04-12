@@ -50,7 +50,7 @@ g.start_thread(function()
 end)
 local coin = room._objects.coin
 coin.look_text = function()
-  if g.device_analyzed then
+  if g.flags.device_analyzed then
     return LOOK(29, "The only gold in this game.")
   else
     return LOOK(30, "That looks familiar.")
@@ -70,7 +70,7 @@ coin.interact = function()
       wait(0.1)
       coin.hidden = true
       inventory:add("coin")
-      g.got_coin = true
+      g.flags.got_coin = true
       ines:start_animation_thread("W_stand")
       wait(1)
       say(ines, INES(32, "I thought there was no gold in this game!"))
@@ -109,14 +109,14 @@ plate.interact = function()
 end
 local holeegram = room._objects.holeegram
 holeegram.look_text = function()
-  if not g.talked_to_holeegram then
+  if not g.flags.talked_to_holeegram then
     return LOOK(40, "What has he gotten himself into, this time?")
   else
     return LOOK(41, "Somehow he keeps surprising me.")
   end
 end
 holeegram.hotspot_text = function()
-  if not g.talked_to_holeegram then
+  if not g.flags.talked_to_holeegram then
     return TEXT(42, "uncle Lee?")
   else
     return TEXT(43, "holeegram")
@@ -193,12 +193,12 @@ opening.use = {
   device_old = function()
     local ines = g.characters.ines
     return g.blocking_thread(function()
-      if g.asked_to_analyze_device then
+      if g.flags.asked_to_analyze_device then
         ines:start_animation_thread("W_pick_low")
         wait(0.3)
         inventory:remove("device_old")
         ines:start_animation_thread("W_stand")
-        g.device_analyzed = true
+        g.flags.device_analyzed = true
         return lc.dialogues:new(require("dialogues.holeegram"))
       else
         return say(ines, INES(53, "Why would I do that?"))

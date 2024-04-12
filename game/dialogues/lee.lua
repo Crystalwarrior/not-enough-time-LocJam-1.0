@@ -10,13 +10,9 @@ local road = require("road")
 local vortex = require("vortex")
 local inventory = require("inventory")
 local skip = require("skip")
-local cutscene_done = false
-local asked_navigator_what = false
-local asked_navigator_why = false
-local asked_van = false
 return {
   main = function()
-    if not cutscene_done then
+    if not g.flags.cutscene_done then
       return cutscene()
     else
       return regular()
@@ -85,7 +81,7 @@ return {
     ines:start_animation_thread("E_stand")
     inventory:add("device_old")
     require("ui.inventory").hidden = false
-    cutscene_done = true
+    g.flags.cutscene_done = true
     audio:restart_music()
     skip:stop()
     return exit()
@@ -125,12 +121,12 @@ return {
     return navigator_options()
   end,
   navigator_options = function()
-    if not asked_navigator_what then
+    if not g.flags.asked_navigator_what then
       option(ECHO(160, "What does it do?"), navigator2)
     else
       option(ECHO(161, "Remind me what it does."), navigator2)
     end
-    if not asked_navigator_why then
+    if not g.flags.asked_navigator_why then
       option(ECHO(162, "Why would you make such a thing?"), navigator3)
     else
       option(ECHO(163, "Remind me why you made it?"), navigator3)
@@ -143,8 +139,8 @@ return {
   end,
   navigator2 = function()
     echo(ines)
-    if not asked_navigator_what then
-      asked_navigator_what = true
+    if not g.flags.asked_navigator_what then
+      g.flags.asked_navigator_what = true
       say(lee, LEE(410, "What a silly question!"))
       say(lee, LEE(411, "It's a device to navigate through time."))
       wait(0.5)
@@ -161,8 +157,8 @@ return {
   end,
   navigator3 = function()
     echo(ines)
-    if not asked_navigator_why then
-      asked_navigator_why = true
+    if not g.flags.asked_navigator_why then
+      g.flags.asked_navigator_why = true
       say(lee, LEE(416, "Well, the other day I was cooking and I realised that I ran out of forks."))
       say(ines, INES(167, "You shouldn't be using single-use utensils, uncle Lee!"))
       say(ines, INES(168, "It's bad for the environment!"))
@@ -188,8 +184,8 @@ return {
   end,
   van = function()
     echo(ines)
-    if not asked_van then
-      asked_van = true
+    if not g.flags.asked_van then
+      g.flags.asked_van = true
       say(lee, LEE(424, "They tried to draw it with realistic proportions but that wasn't working well."))
       wait(1)
       say(ines, INES(171, "...what?"))

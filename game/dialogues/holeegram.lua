@@ -14,9 +14,9 @@ return {
   main = function()
     if first_time then
       first_time = false
-      g.talked_to_holeegram = true
+      g.flags.talked_to_holeegram = true
       return intro()
-    elseif g.asked_to_analyze_device and not g.device_analyzed then
+    elseif g.flags.asked_to_analyze_device and not g.flags.device_analyzed then
       return analyze_device()
     elseif explain_ingredients then
       return ingredients()
@@ -26,7 +26,7 @@ return {
     end
   end,
   analyze_device = function()
-    g.asked_to_analyze_device = true
+    g.flags.asked_to_analyze_device = true
     explain_ingredients = true
     say(holeegram, HOLEEGRAM(544, "Put the device in the opening below me, so I can analyse it."))
     return exit()
@@ -84,7 +84,7 @@ return {
         echo(ines)
         say(holeegram, HOLEEGRAM(559, "I need a MAGNET and the COIN from the museum."))
         say(ines, INES(278, "Got it."))
-        if g.got_coin and g.got_guitar then
+        if g.flags.got_coin and g.flags.got_guitar then
           return options()
         else
           return ingredients_options()
@@ -106,7 +106,7 @@ return {
         return selection()
       end)
     end
-    if g.seen_president then
+    if g.flags.seen_president then
       option(ECHO(282, "Do you have any idea how to fix the inconsistency that's preventing me from using the device?"), function()
         echo(ines)
         say(holeegram, HOLEEGRAM(564, "Of course, I specialise in inconsistencies!"))
@@ -185,7 +185,7 @@ return {
     return ingredients_options()
   end,
   ingredients_options = function()
-    if not g.got_guitar then
+    if not g.flags.got_guitar then
       option(ECHO(297, "Where can I find a magnet?"), function()
         echo(ines)
         say(ines, INES(298, "I imagine there are plenty here in the future."))
@@ -198,7 +198,7 @@ return {
         return ingredients_options()
       end)
     end
-    if not g.got_coin then
+    if not g.flags.got_coin then
       option(ECHO(301, "The coin seems oddly specific."), function()
         echo(ines)
         say(holeegram, HOLEEGRAM(589, "Well, TECHNICALLY I just need some gold."))

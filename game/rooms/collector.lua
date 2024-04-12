@@ -9,7 +9,7 @@ room.order = 2
 room._objects.wheels:start_animation("default")
 local collector = room._objects.collector
 collector.look_text = function()
-  if not g.collector_distracted then
+  if not g.flags.collector_distracted then
     if g.characters.collector._direction == lc.Character.direction.N then
       return LOOK(62, "She's staring very intensely at that poster.")
     else
@@ -20,7 +20,7 @@ collector.look_text = function()
   end
 end
 collector.hotspot_text = function()
-  if not g.know_who_collector_is then
+  if not g.flags.know_who_collector_is then
     return TEXT(65, "?")
   else
     return TEXT(66, "collector")
@@ -53,7 +53,7 @@ collector.use = {
       c._animations["E_talk"]:toggle_visibility("headphones")
       c._animations["E_stand"]:toggle_visibility("headphones")
       c._animations["E_distracted"]:toggle_visibility("headphones")
-      g.collector_distracted = true
+      g.flags.collector_distracted = true
       return wait(1)
     end)
   end,
@@ -61,14 +61,14 @@ collector.use = {
     local ines = g.characters.ines
     local c = g.characters.collector
     return g.blocking_thread(function()
-      g.triedToGiveCassette = true
+      g.flags.triedToGiveCassette = true
       say(ines, INES(69, "Here."))
       ines:start_animation_thread("W_pick_high")
       wait(0.1)
       inventory:remove("cassette")
       ines:start_animation_thread("W_stand")
       say(c, COLLECTOR(377, "What's this?"))
-      if not g.know_about_tape then
+      if not g.flags.know_about_tape then
         say(ines, INES(70, "It's a demo tape from the band who used to own this van."))
       else
         say(ines, INES(71, "It's the demo tape you wanted so badly."))
@@ -112,7 +112,7 @@ pick.interact = function()
     ines:start_animation_thread("E_pick_high")
     wait(0.1)
     inventory:add("pick")
-    g.got_pick = true
+    g.flags.got_pick = true
     poster:start_animation("no_pick", true)
     pick.hidden = true
     ines:start_animation_thread("E_stand")
@@ -172,7 +172,7 @@ recorder.interact = function()
     wait(0.3)
     ines:start_animation_thread("take_recorder")
     wait(0.3)
-    if g.collector_looking then
+    if g.flags.collector_looking then
       ines:start_animation_thread("N_stand")
       say(c, COLLECTOR(382, "Leave that alone!"))
       say(c, COLLECTOR(383, "It's priceless."))
@@ -197,13 +197,13 @@ g.start_thread(function()
   local warning = false
   while true do
     if lc.game.room == room then
-      if g.collector_distracted then
+      if g.flags.collector_distracted then
         break
       end
       if ines._wlk.moving then
         c:face2("E")
-        if not g.collector_looking then
-          g.collector_looking = true
+        if not g.flags.collector_looking then
+          g.flags.collector_looking = true
           g.start_thread(function()
             return say(c, COLLECTOR(384, "Uh, it's you again."))
           end)

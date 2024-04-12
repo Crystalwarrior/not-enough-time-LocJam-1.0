@@ -38,7 +38,7 @@ local device_new2 = new_object("device_new2", (function()
   return TEXT(120, "reality-fixing device™ (hopefully working)")
 end))
 device_new2.look_text = function()
-  if not g.seen_president then
+  if not g.flags.seen_president then
     return LOOK(121, "Fixed and ready to go.")
   else
     return LOOK(122, "Of course it couldn't be that easy.")
@@ -96,7 +96,7 @@ device_new2.interact = function()
     shake:start()
     wait_signal(shake, "finished")
     president_ines:set_position(-100, -100)
-    g.seen_president = true
+    g.flags.seen_president = true
     device_new2.interact = nil
     return skip:stop()
   end)

@@ -84,8 +84,8 @@ return {
         return options_band()
       end)
     end
-    if g.device_analyzed then
-      if not g.got_coin or not g.got_guitar then
+    if g.flags.device_analyzed then
+      if not g.flags.got_coin or not g.flags.got_guitar then
         option(ECHO(187, "I'm looking for something."), function()
           echo(ines)
           return options_looking()
@@ -188,7 +188,7 @@ return {
       wait(1)
       say(ines, INES(201, "...of course."))
     end
-    if not g.got_coin then
+    if not g.flags.got_coin then
       option(ECHO(202, "You guys wouldn't happen to have some gold hidden somewhere, uh?"), function()
         echo(ines)
         say(paolo, PAOLO(464, "You're not the first one to ask today."))
@@ -200,7 +200,7 @@ return {
         return options_looking()
       end)
     end
-    if not asked_magnets_once or not g.asked_about_magnets then
+    if not asked_magnets_once or not g.flags.asked_about_magnets then
       option(ECHO(204, "Magnets. I need magnets."), function()
         asked_magnets_once = true
         echo(ines)
@@ -228,7 +228,7 @@ return {
         say(peppe, PEPPE(477, "I guess we have magnets, then."))
         return options_looking()
       end)
-    elseif not g.got_guitar then
+    elseif not g.flags.got_guitar then
       if asked_borrow == 0 then
         option(ECHO(209, "Can I borrow one of your guitars?"), function()
           asked_borrow = 1
@@ -298,7 +298,7 @@ return {
     say(peppe, PEPPE(504, "Somewhere in Woodstock, I guess."))
     wait(1)
     say(ines, INES(218, "Of course."))
-    g.know_about_pick = true
+    g.flags.know_about_pick = true
     return options_looking()
   end
 }

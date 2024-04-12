@@ -4,8 +4,6 @@ do
   local _obj_0 = g.characters
   ines, collector = _obj_0.ines, _obj_0.collector
 end
-local first_time = true
-g.asked_about_magnets = false
 local collect_list = {
   idx = 1,
   function()
@@ -64,7 +62,7 @@ local collect_list = {
 }
 return {
   main = function()
-    if first_time then
+    if not g.flags.collector_intro then
       return intro()
     else
       say(ines, INES(236, "Hello."))
@@ -74,7 +72,7 @@ return {
     end
   end,
   leave = function()
-    if g.collector_distracted then
+    if g.flags.collector_distracted then
       collector:start_animation("E_distracted")
     end
     return exit()
@@ -92,13 +90,13 @@ return {
     say(collector, COLLECTOR(510, "NOW."))
     wait(1)
     say(collector, COLLECTOR(511, "Or at least don't touch anything."))
-    first_time = false
+    g.flags.collector_intro = true
     return leave()
   end,
   options = function()
-    if not g.know_who_collector_is then
+    if not g.flags.know_who_collector_is then
       option(ECHO(239, "The van looks different."), function()
-        g.know_who_collector_is = true
+        g.flags.know_who_collector_is = true
         echo(ines)
         say(ines, INES(240, "What's all this junk?"))
         say(collector, COLLECTOR(512, "Junk?"))
@@ -119,7 +117,7 @@ return {
         say(collector, COLLECTOR(520, "...even these very walls were owned by THE BAND."))
         say(ines, INES(243, "You mean the van?"))
         say(collector, COLLECTOR(521, "It's the ultimate collection."))
-        if not (g.collector_distracted) then
+        if not (g.flags.collector_distracted) then
           wait(1)
           say(collector, COLLECTOR(522, "...or it would be, if only..."))
         end
@@ -134,7 +132,7 @@ return {
     return selection()
   end,
   collect_options = function()
-    if g.know_about_pick and not g.got_pick then
+    if g.flags.know_about_pick and not g.flags.got_pick then
       option(ECHO(245, "Do you have the band's lost pick?"), function()
         echo(ines)
         say(collector, COLLECTOR(524, "Which one?"))
@@ -147,7 +145,7 @@ return {
         return collect_options()
       end)
     end
-    if not (g.collector_distracted) then
+    if not (g.flags.collector_distracted) then
       option(ECHO(248, "Is your collection missing something?"), function()
         echo(ines)
         say(collector, COLLECTOR(529, "Legend says that THE BAND wrote a most magnificent song."))
@@ -160,12 +158,12 @@ return {
         say(collector, COLLECTOR(534, "...I'd really like to have that."))
         wait(1)
         say(ines, INES(249, "I see."))
-        g.know_about_tape = true
+        g.flags.know_about_tape = true
         return collect_options()
       end)
     end
-    if g.device_analyzed then
-      if not g.got_coin then
+    if g.flags.device_analyzed then
+      if not g.flags.got_coin then
         option(ECHO(250, "Do you collect any gold?"), function()
           echo(ines)
           say(collector, COLLECTOR(535, "No, there's no gold in this game."))
@@ -173,11 +171,11 @@ return {
           return collect_options()
         end)
       end
-      if not g.got_guitar then
+      if not g.flags.got_guitar then
         option(ECHO(252, "Do you collect any magnets?"), function()
           echo(ines)
-          if not g.asked_about_magnets then
-            g.asked_about_magnets = true
+          if not g.flags.asked_about_magnets then
+            g.flags.asked_about_magnets = true
             say(collector, COLLECTOR(536, "What kind of weirdo would collect raw magnets?"))
             wait(1)
             say(ines, INES(253, "...uncle Lee."))

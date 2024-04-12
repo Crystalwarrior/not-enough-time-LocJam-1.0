@@ -29,7 +29,7 @@ wilson.use = {
     local andrea = g.characters.andrea
     local paolo = g.characters.paolo
     return g.blocking_thread(function()
-      if not g.know_about_pick then
+      if not g.flags.know_about_pick then
         say(ines, INES(56, "Why would I do that?"))
         return 
       end
@@ -54,7 +54,7 @@ wilson.use = {
       inventory:add("guitar")
       peppe:start_animation_thread("E_stand")
       ines:start_animation_thread("W_stand")
-      g.got_guitar = true
+      g.flags.got_guitar = true
       wait(1)
       ines:walk_thread(destroy_position:unpack())
       inventory:remove("guitar")

@@ -65,15 +65,15 @@ return {
   end,
   nineties = function()
     switch_room(g.rooms.collector, function()
-      if not g.collector_distracted then
+      if not g.flags.collector_distracted then
         g.characters.collector:face2("N")
       end
-      g.collector_looking = false
-      if not g.visited_collector then
-        g.collector_looking = true
-        g.visited_collector = true
+      g.flags.collector_looking = false
+      if not g.flags.visited_collector then
+        g.flags.collector_looking = true
+        g.flags.visited_collector = true
         ui_inventory.hidden = true
-        g.collector_looking = true
+        g.flags.collector_looking = true
         wait(0.5)
         local collector = g.rooms.collector._objects.collector
         ines:walk_thread(collector.interact_position:unpack())
