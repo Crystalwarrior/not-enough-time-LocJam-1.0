@@ -162,7 +162,7 @@ M.remove = function(self, name)
   for i, obj in ipairs(self.bag) do
     if obj.name == name then
       table.remove(self.bag, i)
-      table.remove(g.bag, name)
+      table.remove(g.bag, i)
       g:saveGame()
       return
     end
