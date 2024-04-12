@@ -22,6 +22,7 @@ switch_room = function(room, f)
     lc.game.set_room(room)
     ines:change_room(room, ines._position:unpack())
     ui_inventory.hidden = false
+    g.room = room
     if f then
       return f()
     end

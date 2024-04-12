@@ -84,6 +84,18 @@ g.blocking_thread(function()
   while not g.game_started do
     wait_frame()
   end
+  print("THE BEGINNING")
+  g:loadGame()
+  if g.bag then
+    g.rooms.present._objects.exterior.hidden = true
+    g.intro = false
+    require("vortex").on = true
+    require("ui.inventory").hidden = false
+    audio.start_music()
+    audio.set_parameter("room", 2)
+    print("Save data found!")
+    return
+  end
   return lc.dialogues:new(require("dialogues.lee"))
 end)
 g.intro = require("intro")

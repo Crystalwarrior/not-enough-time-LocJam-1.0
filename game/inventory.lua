@@ -142,6 +142,8 @@ pickup.look_text = function()
 end
 M.add = function(self, name)
   self.bag[#self.bag + 1] = objects[name]
+  table.insert(g.bag, name)
+  g:saveGame()
   return g.start_thread(function()
     local obj = objects[name]
     obj.alpha = 1
@@ -160,7 +162,9 @@ M.remove = function(self, name)
   for i, obj in ipairs(self.bag) do
     if obj.name == name then
       table.remove(self.bag, i)
-      return 
+      table.remove(g.bag, name)
+      g:saveGame()
+      return
     end
   end
 end
