@@ -53,7 +53,7 @@ M.saveGameExists = function()
 end
 
 M.saveGame = function()
-    local _room = ""
+    local _room = "present"
     -- room object doesn't have a name attribute, so we're forced to do this
     if M.room == g.rooms.present then
         _room = "present"
@@ -116,7 +116,10 @@ M.loadGame = function()
             _room = g.rooms.past
         end
         -- this is ripped out of "dialogues.navigator" without the animation. Stuff of nightmares but you know how it is.
-        require("audio").switch_room(_room)
+        local audio = require("audio")
+        audio.stop_music()
+        audio.start_music()
+        audio.switch_room(_room)
         require("engine").game.set_room(_room)
         g.characters.ines:change_room(_room, g.characters.ines._position:unpack())
         g.room = _room

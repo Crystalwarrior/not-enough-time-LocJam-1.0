@@ -26,6 +26,7 @@ switch_room = function(room, f)
     if f then
       return f()
     end
+    g:saveGame()
   end)
   return t
 end
@@ -59,6 +60,8 @@ return {
         wait(2)
         wilson.interact()
         ui_inventory.hidden = false
+      else
+        g:saveGame()
       end
     end)
     return exit()
@@ -87,6 +90,7 @@ return {
         ines._position.x = ines._position.x + 4
         ines._wlk.prev_target = nil
       end
+      g:saveGame()
     end)
     return exit()
   end,

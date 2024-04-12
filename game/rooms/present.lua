@@ -73,6 +73,7 @@ lee.use_nowalk = {
   end
 }
 local navigator = room._objects.navigator
+navigator.hidden = true
 navigator.look_text = function()
   return LOOK(15, "Why uncle Lee, why?")
 end

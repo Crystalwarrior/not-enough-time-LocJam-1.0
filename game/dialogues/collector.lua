@@ -95,6 +95,7 @@ return {
     return leave()
   end,
   options = function()
+    g:saveGame()
     if not g.flags.know_who_collector_is then
       option(ECHO(239, "The van looks different."), function()
         g.flags.know_who_collector_is = true
@@ -107,7 +108,7 @@ return {
         say(collector, COLLECTOR(515, "You wouldn't understand."))
         say(ines, INES(241, "Are you a collector?"))
         say(collector, COLLECTOR(516, "I am THE collector."))
-        g:saveGame()
+        
         return options()
       end)
     else
@@ -134,6 +135,7 @@ return {
     return selection()
   end,
   collect_options = function()
+    g:saveGame()
     if g.flags.know_about_pick and not g.flags.got_pick then
       option(ECHO(245, "Do you have the band's lost pick?"), function()
         echo(ines)
@@ -161,7 +163,6 @@ return {
         wait(1)
         say(ines, INES(249, "I see."))
         g.flags.know_about_tape = true
-        g:saveGame()
         return collect_options()
       end)
     end
@@ -193,7 +194,7 @@ return {
             say(collector, COLLECTOR(539, "They are in the deposit."))
             say(collector, COLLECTOR(540, "It's a rotating collection."))
             say(ines, INES(258, "Damn."))
-            g:saveGame()
+            
           else
             say(collector, COLLECTOR(541, "I told you, the guitars have magnets in them."))
             say(collector, COLLECTOR(542, "But I don't have any here."))

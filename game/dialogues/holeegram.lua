@@ -24,7 +24,6 @@ return {
     g.flags.asked_to_analyze_device = true
     g.flags.explain_ingredients = true
     say(holeegram, HOLEEGRAM(544, "Put the device in the opening below me, so I can analyse it."))
-    g:saveGame()
     return exit()
   end,
   intro = function()
@@ -42,7 +41,6 @@ return {
     option(NOECHO(265, "I wouldn't call it \"marvellous\"..."), intro2)
     option(NOECHO(266, "You're lucky I cannot punch you."), intro2)
     option(NOECHO(267, "I'm here because you BUTT-DIALED a time machine."), intro2)
-    g:saveGame()
     return selection()
   end,
   intro2 = function()
@@ -50,6 +48,7 @@ return {
     return options()
   end,
   options = function()
+    g:saveGame()
     option(ECHO(269, "How far into the future are we?"), function()
       echo(ines)
       say(holeegram, HOLEEGRAM(551, "Hundreds of years!"))
@@ -122,6 +121,7 @@ return {
     return selection()
   end,
   future_options = function()
+    g:saveGame()
     option(ECHO(286, "What happened to me in this timeline?"), function()
       g.flags.know_president = true
       echo(ines)
@@ -132,7 +132,6 @@ return {
       say(holeegram, HOLEEGRAM(569, "Yes, you are the President of W.H.A.T."))
       wait(1)
       say(ines, INES(289, "Never mind, just help me get out of this mess."))
-      g:saveGame()
       return future_options()
     end)
     option(ECHO(290, "What happened to your body?"), function()
@@ -180,10 +179,10 @@ return {
     say(holeegram, HOLEEGRAM(584, "We'll just need:"))
     say(holeegram, HOLEEGRAM(585, "A strong MAGNET..."))
     say(holeegram, HOLEEGRAM(586, "...and that COIN from the back of the museum."))
-    g:saveGame()
     return ingredients_options()
   end,
   ingredients_options = function()
+    g:saveGame()
     if not g.flags.got_guitar then
       option(ECHO(297, "Where can I find a magnet?"), function()
         echo(ines)

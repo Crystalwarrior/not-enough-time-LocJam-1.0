@@ -164,9 +164,6 @@ local poster_tr = love.graphics.newImage("assets/single_sprites/poster_translate
 new_poster._image = function()
   return lc.tr_text == require("text_english") and poster_en or poster_tr
 end
-if not new_poster.hidden then
-  poster:start_animation("changed", true)
-end
 local recorder = room._objects.recorder
 
 recorder.interact_position = Vec2(123, 99)
@@ -219,7 +216,6 @@ g.start_thread(function()
         c:face2("E")
         if not g.flags.collector_looking then
           g.flags.collector_looking = true
-          g:saveGame()
           g.start_thread(function()
             return say(c, COLLECTOR(384, "Uh, it's you again."))
           end)

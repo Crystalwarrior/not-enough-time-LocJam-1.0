@@ -641,5 +641,7 @@ t[352] = "Made with"  -- {TEXT, credits.moon}
 t[353] = "Audio engine"  -- {TEXT, credits.moon}
 t[354] = "GUI framework"  -- {TEXT, credits.moon}
 t[356] = "Thanks for playing!"  -- {TEXT, credits.moon}
+t[654] = "Delete Save File"  -- {TEXT, gui/options.moon}
+t[655] = "Are You Sure?"  -- {TEXT, gui/options.moon}
 
 return t

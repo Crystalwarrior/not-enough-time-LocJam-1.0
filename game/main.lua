@@ -92,18 +92,27 @@ g.blocking_thread(function()
     require("vortex").on = true
     require("road").on = false
     require("ui.inventory").hidden = false
-    audio.start_music()
-    audio.set_parameter("room", 2)
-    print("Save data found!")
     -- initialize flag-based hidden-ness, this is kind of awful but we're on a time limit.
     g.rooms.collector._objects.pick.hidden = not g.flags.poster_interacted or g.flags.got_pick
+
+    if g.flags.got_pick then
+      g.rooms.collector._objects.poster:start_animation("no_pick", true)
+    end
+
+    if g.flags.poster_changed then
+      g.rooms.collector._objects.poster:start_animation("changed", true)
+    end
+
     g.rooms.collector._objects.new_poster.hidden = not g.flags.poster_changed
+
     g.rooms.collector._objects.recorder.hidden = g.flags.recorder_obtained
     g.rooms.future._objects.coin.hidden = g.flags.got_coin
     g.rooms.present._objects.navigator.hidden = not g.flags.navigator_available
 
     g.rooms.present._objects.lee.hidden = g.flags.hide_lee
     g.characters.lee:change_room(nil)
+
+    print("Save data loaded!")
     return
   end
   return lc.dialogues:new(require("dialogues.lee"))
