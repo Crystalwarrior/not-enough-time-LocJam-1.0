@@ -15,9 +15,7 @@ local M = {
     skip_with_right = false,
     debug = false,
 
-    flags = {
-        
-    },
+    flags = {},
     bag = {},
     room = nil,
     savepath = "data.json",
@@ -29,7 +27,9 @@ M.saveOptions = function()
         skip_with_left = M.skip_with_left,
         skip_with_right = M.skip_with_right,
     }
-    love.filesystem.write(M.savepath, json.encode(save_data))
+    local json_data = json.encode(save_data)
+    love.filesystem.write(M.savepath, json_data)
+    print(json_data)
     print("saving options")
 end
 
@@ -46,36 +46,89 @@ M.loadOptions = function()
     print("loading options")
 end
 
+M.saveGameExists = function()
+    local file = love.filesystem.getInfo(M.gamesavepath)
+    if not file then return false end
+    return true
+end
+
 M.saveGame = function()
+    local _room = ""
+    -- room object doesn't have a name attribute, so we're forced to do this
+    if M.room == g.rooms.present then
+        _room = "present"
+    end
+    if M.room == g.rooms.collector then
+        _room = "collector"
+    end
+    if M.room == g.rooms.future then
+        _room = "future"
+    end
+    if M.room == g.rooms.past then
+        _room = "past"
+    end
     local save_data = {
+        flags = M.flags,
         bag = M.bag,
-        room = M.room,
+        room = _room,
         ines_position_x = g.characters.ines._position.x,
         ines_position_y = g.characters.ines._position.y,
     }
-    love.filesystem.write(M.gamesavepath, json.encode(save_data))
+    local json_data = json.encode(save_data)
+    love.filesystem.write(M.gamesavepath, json_data)
+    print(json_data)
     print("saving video game")
 end
 
 M.loadGame = function()
-    local file = love.filesystem.getInfo(M.gamesavepath)
-    if not file then return end
+    if not M:saveGameExists() then return end
 
     -- Load the save data
     local data = love.filesystem.read(M.gamesavepath)
     print(data)
     local save_data = json.decode(data)
 
+    if save_data.flags then
+        M.flags = save_data.flags
+    end
     if save_data.bag then
-        M.bag = save_data.bag
+        local inventory = require("inventory")
+        for i, item in ipairs(save_data.bag) do
+            inventory:add(item)
+        end
     end
     if save_data.ines_position_x and save_data.ines_position_y then
-        -- g.characters.ines.set_position(save_data.ines_position_x, save_data.ines_position_y)
+        g.characters.ines:set_position(save_data.ines_position_x, save_data.ines_position_y)
     end
     if save_data.room then
-        g.switch_room(save_data.room)
+        local _room = nil
+        -- room object doesn't have a name attribute, so we're forced to do this
+        if save_data.room == "present" then
+            _room = g.rooms.present
+        end
+        if save_data.room == "collector" then
+            _room = g.rooms.collector
+        end
+        if save_data.room == "future" then
+            _room = g.rooms.future
+        end
+        if save_data.room == "past" then
+            _room = g.rooms.past
+        end
+        -- this is ripped out of "dialogues.navigator" without the animation. Stuff of nightmares but you know how it is.
+        require("audio").switch_room(_room)
+        require("engine").game.set_room(_room)
+        g.characters.ines:change_room(_room, g.characters.ines._position:unpack())
+        g.room = _room
     end
     print("loading video game")
+end
+
+M.wipeGame = function()
+    if not M:saveGameExists() then return end
+
+    love.filesystem.remove(M.gamesavepath)
+    print("wiping video game")
 end
 
 return M

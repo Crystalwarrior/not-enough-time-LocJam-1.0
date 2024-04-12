@@ -69,9 +69,10 @@ wilson.use = {
       say(peppe, PEPPE(369, "That hurt."))
       wait(1)
       say(paolo, PAOLO(370, "This gives me an idea for an album cover."))
-      g.poster_changed = true
+      g.flags.poster_changed = true
       g.rooms.collector._objects.poster:start_animation("changed", true)
       g.rooms.collector._objects.new_poster.hidden = false
+      g:saveGame()
     end)
   end
 }
@@ -84,7 +85,8 @@ wilson.use_nowalk = {
       wait(0.3)
       ines:walk_thread(wilson.interact_position:unpack())
       ines:face2(wilson.interact_direction)
-      g.recorder_on = true
+      g.flags.recorder_on = true
+      g:saveGame()
       return lc.dialogues:new(require("dialogues.wilson"))
     end)
   end

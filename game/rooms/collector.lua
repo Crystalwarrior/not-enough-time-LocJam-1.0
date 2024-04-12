@@ -54,6 +54,7 @@ collector.use = {
       c._animations["E_stand"]:toggle_visibility("headphones")
       c._animations["E_distracted"]:toggle_visibility("headphones")
       g.flags.collector_distracted = true
+      g:saveGame()
       return wait(1)
     end)
   end,
@@ -61,6 +62,10 @@ collector.use = {
     local ines = g.characters.ines
     local c = g.characters.collector
     return g.blocking_thread(function()
+      if g.flags.triedToGiveCassette then
+        collector.use.cassette = nil
+        return
+      end
       g.flags.triedToGiveCassette = true
       say(ines, INES(69, "Here."))
       ines:start_animation_thread("W_pick_high")
@@ -84,6 +89,7 @@ collector.use = {
       inventory:add("cassette")
       ines:start_animation_thread("W_stand")
       collector.use.cassette = nil
+      g:saveGame()
     end)
   end
 }
@@ -122,12 +128,14 @@ pick.interact = function()
     wait(0.2)
     ines:face2("S")
     wait(0.2)
-    return say(ines, INES(78, "A completely normal and sane thing to do."))
+    say(ines, INES(78, "A completely normal and sane thing to do."))
+    g:saveGame()
+    return
   end)
 end
-pick.hidden = true
+
 poster.look_text = function()
-  if not g.poster_changed then
+  if not g.flags.poster_changed then
     return LOOK(79, "A striking pose. The composition drives the focus to the pick.")
   else
     return LOOK(80, "Ahead of its time. Hey, wasn't it different before?")
@@ -146,6 +154,8 @@ poster.interact = function()
     say(ines, INES(83, "That is what artists would call \"in relief\"."))
     poster.interact = nil
     pick.hidden = false
+    g.flags.poster_interacted = true
+    g:saveGame()
   end)
 end
 local new_poster = room._objects.new_poster
@@ -154,8 +164,11 @@ local poster_tr = love.graphics.newImage("assets/single_sprites/poster_translate
 new_poster._image = function()
   return lc.tr_text == require("text_english") and poster_en or poster_tr
 end
-new_poster.hidden = true
+if not new_poster.hidden then
+  poster:start_animation("changed", true)
+end
 local recorder = room._objects.recorder
+
 recorder.interact_position = Vec2(123, 99)
 recorder.interact_direction = "N"
 recorder.look_text = function()
@@ -168,7 +181,7 @@ recorder.interact = function()
   local ines = g.characters.ines
   local c = g.characters.collector
   return g.blocking_thread(function()
-    g.at_recorder_spot = true
+    g.flags.at_recorder_spot = true
     wait(0.3)
     ines:start_animation_thread("take_recorder")
     wait(0.3)
@@ -181,11 +194,13 @@ recorder.interact = function()
       return say(ines, INES(86, "Drats."))
     else
       inventory:add("recorder")
+      g.flags.recorder_obtained = true
       recorder.hidden = true
       ines:start_animation_thread("N_stand")
       wait(0.5)
       ines:face2("E")
       wait(0.1)
+      g:saveGame()
       return say(ines, INES(87, "Heh heh."))
     end
   end)
@@ -204,6 +219,7 @@ g.start_thread(function()
         c:face2("E")
         if not g.flags.collector_looking then
           g.flags.collector_looking = true
+          g:saveGame()
           g.start_thread(function()
             return say(c, COLLECTOR(384, "Uh, it's you again."))
           end)
@@ -226,7 +242,7 @@ g.start_thread(function()
       end
     else
       if ines._position ~= recorder.interact_position then
-        g.at_recorder_spot = false
+        g.flags.at_recorder_spot = false
       end
     end
     wait_frame()

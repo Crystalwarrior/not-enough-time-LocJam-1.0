@@ -86,7 +86,7 @@ g.blocking_thread(function()
   end
   print("THE BEGINNING")
   g:loadGame()
-  if g.bag then
+  if g.flags.cutscene_done then
     g.rooms.present._objects.exterior.hidden = true
     g.intro = false
     require("vortex").on = true
@@ -95,6 +95,15 @@ g.blocking_thread(function()
     audio.start_music()
     audio.set_parameter("room", 2)
     print("Save data found!")
+    -- initialize flag-based hidden-ness, this is kind of awful but we're on a time limit.
+    g.rooms.collector._objects.pick.hidden = not g.flags.poster_interacted or g.flags.got_pick
+    g.rooms.collector._objects.new_poster.hidden = not g.flags.poster_changed
+    g.rooms.collector._objects.recorder.hidden = g.flags.recorder_obtained
+    g.rooms.future._objects.coin.hidden = g.flags.got_coin
+    g.rooms.present._objects.navigator.hidden = not g.flags.navigator_available
+
+    g.rooms.present._objects.lee.hidden = g.flags.hide_lee
+    g.characters.lee:change_room(nil)
     return
   end
   return lc.dialogues:new(require("dialogues.lee"))

@@ -6,19 +6,14 @@ do
   ines, holeegram = _obj_0.ines, _obj_0.holeegram
 end
 local inventory = require("inventory")
-local first_time = true
-local first_time_fix = true
-local know_president = false
-local explain_ingredients = false
 return {
   main = function()
-    if first_time then
-      first_time = false
+    if not g.flags.talked_to_holeegram then
       g.flags.talked_to_holeegram = true
       return intro()
     elseif g.flags.asked_to_analyze_device and not g.flags.device_analyzed then
       return analyze_device()
-    elseif explain_ingredients then
+    elseif g.flags.explain_ingredients then
       return ingredients()
     else
       say(ines, INES(260, "I'm back."))
@@ -27,8 +22,9 @@ return {
   end,
   analyze_device = function()
     g.flags.asked_to_analyze_device = true
-    explain_ingredients = true
+    g.flags.explain_ingredients = true
     say(holeegram, HOLEEGRAM(544, "Put the device in the opening below me, so I can analyse it."))
+    g:saveGame()
     return exit()
   end,
   intro = function()
@@ -46,6 +42,7 @@ return {
     option(NOECHO(265, "I wouldn't call it \"marvellous\"..."), intro2)
     option(NOECHO(266, "You're lucky I cannot punch you."), intro2)
     option(NOECHO(267, "I'm here because you BUTT-DIALED a time machine."), intro2)
+    g:saveGame()
     return selection()
   end,
   intro2 = function()
@@ -58,10 +55,10 @@ return {
       say(holeegram, HOLEEGRAM(551, "Hundreds of years!"))
       return future_options()
     end)
-    if first_time_fix then
+    if not g.flags.talked_about_fixing then
       option(ECHO(270, "Can you help me get out of this time tunnel?"), function()
         echo(ines)
-        first_time_fix = false
+        g.flags.talked_about_fixing = true
         say(holeegram, HOLEEGRAM(552, "Time tunnel?"))
         say(ines, INES(271, "You pressed your fancy button and disappeared, leaving me stranded."))
         say(ines, INES(272, "Does that ring a bell?"))
@@ -126,7 +123,7 @@ return {
   end,
   future_options = function()
     option(ECHO(286, "What happened to me in this timeline?"), function()
-      know_president = true
+      g.flags.know_president = true
       echo(ines)
       say(holeegram, HOLEEGRAM(568, "You are the President!"))
       say(ines, INES(287, "Awesome!"))
@@ -135,6 +132,7 @@ return {
       say(holeegram, HOLEEGRAM(569, "Yes, you are the President of W.H.A.T."))
       wait(1)
       say(ines, INES(289, "Never mind, just help me get out of this mess."))
+      g:saveGame()
       return future_options()
     end)
     option(ECHO(290, "What happened to your body?"), function()
@@ -145,7 +143,7 @@ return {
       say(holeegram, HOLEEGRAM(572, "I kind of misplaced it."))
       say(ines, INES(291, "What!?"))
       say(holeegram, HOLEEGRAM(573, "Nothing to worry about, dear."))
-      if know_president then
+      if g.flags.know_president then
         say(holeegram, HOLEEGRAM(574, "President Ines is on the case and I'm sure she will find it in no time."))
       else
         say(holeegram, HOLEEGRAM(575, "Future Ines is on the case and I'm sure she will find it in no time."))
@@ -171,7 +169,7 @@ return {
     return selection()
   end,
   ingredients = function()
-    explain_ingredients = false
+    g.flags.explain_ingredients = false
     say(holeegram, HOLEEGRAM(579, "It'll need a couple of seconds."))
     say(holeegram, HOLEEGRAM(580, "It's an old model."))
     wait(2)
@@ -182,6 +180,7 @@ return {
     say(holeegram, HOLEEGRAM(584, "We'll just need:"))
     say(holeegram, HOLEEGRAM(585, "A strong MAGNET..."))
     say(holeegram, HOLEEGRAM(586, "...and that COIN from the back of the museum."))
+    g:saveGame()
     return ingredients_options()
   end,
   ingredients_options = function()

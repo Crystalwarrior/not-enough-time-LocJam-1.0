@@ -56,5 +56,9 @@ M.mousemoved = function(self)
 end
 M.set_menu = function(self, name)
   self.menu = menus[name]
+  local m = self.menu
+  if m and m.opened then
+    return m:opened()
+  end
 end
 return M

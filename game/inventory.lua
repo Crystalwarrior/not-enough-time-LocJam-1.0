@@ -44,7 +44,10 @@ device_new2.look_text = function()
     return LOOK(122, "Of course it couldn't be that easy.")
   end
 end
+
 device_new2.interact = function()
+  if g.flags.seen_president then return end
+
   local ines = g.characters.ines
   local president_ines = g.characters.president_ines
   return g.blocking_thread(function()
@@ -98,9 +101,11 @@ device_new2.interact = function()
     president_ines:set_position(-100, -100)
     g.flags.seen_president = true
     device_new2.interact = nil
+    g:saveGame()
     return skip:stop()
   end)
 end
+
 local device_old = new_object("device_old", (function()
   return TEXT(131, "reality-fixing device™ (broken)")
 end))
@@ -143,7 +148,6 @@ end
 M.add = function(self, name)
   self.bag[#self.bag + 1] = objects[name]
   table.insert(g.bag, name)
-  g:saveGame()
   return g.start_thread(function()
     local obj = objects[name]
     obj.alpha = 1
@@ -163,7 +167,6 @@ M.remove = function(self, name)
     if obj.name == name then
       table.remove(self.bag, i)
       table.remove(g.bag, i)
-      g:saveGame()
       return
     end
   end

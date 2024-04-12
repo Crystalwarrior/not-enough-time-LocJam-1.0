@@ -7,14 +7,10 @@ do
   ines, andrea, paolo, peppe = _obj_0.ines, _obj_0.andrea, _obj_0.paolo, _obj_0.peppe
 end
 local inventory = require("inventory")
-local first_time = true
-local looking_for_something = true
-local asked_magnets_once = false
-local asked_borrow = 0
 local asked_band = false
 return {
   main = function()
-    if first_time then
+    if not g.flags.talked_to_wilson then
       return intro()
     else
       say(ines, INES(175, "Hello."))
@@ -22,10 +18,10 @@ return {
     end
   end,
   leave = function()
-    if g.recorder_on then
+    if g.flags.recorder_on then
       ines:face2("S")
-      g.recorder_on = false
-      if not g.recorded then
+      g.flags.recorder_on = false
+      if not g.flags.recorded then
         say(ines, INES(176, "Nothing worth recording."))
         say(ines, INES(177, "These guys are boring."))
       else
@@ -33,12 +29,12 @@ return {
         say(ines, INES(179, "I wonder if this tape will be worth something one day."))
         inventory:remove("recorder")
         inventory:add("cassette")
+        g:saveGame()
       end
     end
     return exit()
   end,
   intro = function()
-    first_time = false
     say(paolo, PAOLO(432, "Guys, you won't believe what I'm seeing!"))
     wait(1)
     say(paolo, PAOLO(433, "It's this grumpy girl with GREEN hair!"))
@@ -46,12 +42,14 @@ return {
     say(andrea, ANDREA(435, "We can all see her, you doofus."))
     say(peppe, PEPPE(436, "Must be another time-traveller."))
     say(paolo, PAOLO(437, "Woah."))
+    g.flags.talked_to_wilson = true
+    g:saveGame()
     return leave()
   end,
   options = function()
-    if not asked_band then
+    if not g.flags.asked_band then
       option(ECHO(180, "So you're a band, uh?"), function()
-        asked_band = true
+        g.flags.asked_band = true
         echo(ines)
         say(andrea, ANDREA(438, "What gave it away?"))
         option(ECHO(181, "The guitars, duh."), function()
@@ -108,6 +106,7 @@ return {
     return selection()
   end,
   options_band = function()
+    g:saveGame()
     option(ECHO(189, "Is this van your reharsal space?"), function()
       echo(ines)
       say(paolo, PAOLO(447, "Yes, we had it custom built."))
@@ -137,7 +136,7 @@ return {
       peppe:start_animation("play_anticipation", true)
       paolo:start_animation("play_anticipation", true)
       andrea:start_animation("play_anticipation", true)
-      if g.recorder_on then
+      if g.flags.recorder_on then
         ines:face2("S")
         say(ines, INES(194, "I should probably record this."))
         ines:face2("W")
@@ -158,8 +157,8 @@ return {
       audio:restart_music()
       skip:stop()
       wait_frame()
-      if g.recorder_on then
-        g.recorded = true
+      if g.flags.recorder_on then
+        g.flags.recorded = true
         return leave()
       else
         say(ines, INES(196, "That was relatively painless."))
@@ -174,8 +173,8 @@ return {
     return selection()
   end,
   options_looking = function()
-    if looking_for_something then
-      looking_for_something = false
+    if not g.flags.asked_for_guitar then
+      g.flags.asked_for_guitar = true
       say(paolo, PAOLO(459, "We're fresh out."))
       say(andrea, ANDREA(460, "And before you ask..."))
       say(peppe, PEPPE(461, "...the one in the back is for private use."))
@@ -188,6 +187,7 @@ return {
       wait(1)
       say(ines, INES(201, "...of course."))
     end
+    g:saveGame()
     if not g.flags.got_coin then
       option(ECHO(202, "You guys wouldn't happen to have some gold hidden somewhere, uh?"), function()
         echo(ines)
@@ -200,9 +200,9 @@ return {
         return options_looking()
       end)
     end
-    if not asked_magnets_once or not g.flags.asked_about_magnets then
+    if not g.flags.asked_magnets_once or not g.flags.asked_about_magnets then
       option(ECHO(204, "Magnets. I need magnets."), function()
-        asked_magnets_once = true
+        g.flags.asked_magnets_once = true
         echo(ines)
         say(ines, INES(205, "Do you have any?"))
         say(peppe, PEPPE(468, "I don't think so."))
@@ -229,9 +229,9 @@ return {
         return options_looking()
       end)
     elseif not g.flags.got_guitar then
-      if asked_borrow == 0 then
+      if g.flags.asked_borrow == 0 then
         option(ECHO(209, "Can I borrow one of your guitars?"), function()
-          asked_borrow = 1
+          g.flags.asked_borrow = 1
           echo(ines)
           say(paolo, PAOLO(478, "Sure, why n--"))
           say(andrea, ANDREA(479, "Absolutely not!"))
@@ -248,9 +248,9 @@ return {
         end)
       else
         option(ECHO(212, "Is there anything I can do to persuade you to give me a guitar?"), function()
-          if asked_borrow == 1 then
+          if g.flags.asked_borrow == 1 then
             echo(ines)
-            asked_borrow = 2
+            g.flags.asked_borrow = 2
             say(peppe, PEPPE(485, "Nope."))
             say(andrea, ANDREA(486, "Not a chance."))
             wait(1)
@@ -271,6 +271,7 @@ return {
             say(andrea, ANDREA(498, "May it rest in peace."))
             wait(2)
             say(ines, INES(214, "...I see."))
+            g:saveGame()
             option(ECHO(215, "Would you give me a guitar if I found your pick?"), pick)
             return selection()
           else
@@ -299,6 +300,7 @@ return {
     wait(1)
     say(ines, INES(218, "Of course."))
     g.flags.know_about_pick = true
+    g:saveGame()
     return options_looking()
   end
 }

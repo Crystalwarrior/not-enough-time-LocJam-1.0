@@ -18,6 +18,7 @@ windows.hotspot_text = function()
 end
 common.drawer_setup(room)
 local lee = room._objects.lee
+
 lee.look_text = function()
   return LOOK(8, "At least now he has a reason not to look at the road.")
 end
@@ -52,10 +53,13 @@ lee.use = {
       lee:change_room(nil)
       g.rooms.present._objects.lee.hidden = true
       g.rooms.present._objects.navigator.hidden = false
+      g.flags.hide_lee = true
+      g.flags.navigator_available = true
       wait(1)
       ines:face2("S")
       wait(1)
       say(ines, INES(13, "I should have expected that."))
+      g:saveGame()
       return skip:stop()
     end)
   end
@@ -90,11 +94,13 @@ navigator.interact = function()
     ines:start_animation("W_pick_high")
     wait(0.5)
     navigator.hidden = true
+    g.flags.navigator_available = false
     inventory:add("navigator")
+    g:saveGame()
     return say(ines, INES(19, "There are some times on speed dial."))
   end)
 end
-navigator.hidden = true
+
 local plant = room._objects.plant
 plant.hotspot_text = function()
   return TEXT(20, "plant")
@@ -104,7 +110,10 @@ plant.look_text = function()
 end
 plant.interact_position = Vec2(92, 99)
 plant.interact_direction = "W"
+
 plant.interact = function()
+  if g.flags.plant_interacted then return end
+
   local ines = g.characters.ines
   return g.blocking_thread(function()
     say(ines, INES(22, "There's something hidden in the vase!"))
@@ -116,7 +125,9 @@ plant.interact = function()
     say(ines, INES(23, "It's a spare device."))
     ines:face2("S")
     say(ines, INES(24, "How did it get in there?"))
+    g.flags.plant_interacted = true
     plant.interact = nil
+    g:saveGame()
   end)
 end
 plant.use_nowalk = {

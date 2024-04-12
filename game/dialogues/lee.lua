@@ -83,6 +83,7 @@ return {
     require("ui.inventory").hidden = false
     g.flags.cutscene_done = true
     audio:restart_music()
+    g:saveGame()
     skip:stop()
     return exit()
   end,
@@ -150,6 +151,7 @@ return {
       wait(1)
       say(ines, INES(166, "And do YOU know what you are doing?"))
       say(lee, LEE(414, "More or less."))
+      g:saveGame()
     else
       say(lee, LEE(415, "It's a device to navigate through time."))
     end
@@ -175,6 +177,7 @@ return {
       wait(2)
       ines:face2("E")
       wait(1)
+      g:saveGame()
     else
       say(lee, LEE(422, "To go back in time and steal some forks."))
       say(lee, LEE(423, "From myself."))
@@ -199,6 +202,7 @@ return {
       say(lee, LEE(428, "I won it, fair and square."))
       wait(1)
       say(lee, LEE(429, "It's not my fault if she didn't know how to play briscola."))
+      g:saveGame()
     else
       say(lee, LEE(430, "It's a custom model built for a band of musicians in the sixties."))
       say(lee, LEE(431, "I got it from a collector."))

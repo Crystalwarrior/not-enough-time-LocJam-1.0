@@ -78,6 +78,7 @@ coin.interact = function()
       ines:face2("S")
       say(ines, INES(33, "Hey, it's just gold plated."))
       wait(1)
+      g:saveGame()
       return say(ines, INES(34, "I hope this won't create any problems down the line."))
     else
       return say(ines, glass_wall_line())
@@ -149,7 +150,9 @@ end
 opening.interact_position = holeegram.interact_position
 opening.look_point = holeegram.look_point
 opening.interact_direction = holeegram.interact_direction
-local remaining_objects = 2
+if g.flags.remaining_objects == nil then
+  g.flags.remaining_objects = 2
+end
 local object_inserted
 object_inserted = function(name)
   local ines = g.characters.ines
@@ -159,7 +162,7 @@ object_inserted = function(name)
       say(ines, INES(48, "I can't do that from here."))
       return 
     end
-    if remaining_objects > 1 then
+    if g.flags.remaining_objects > 1 then
       say(ines, INES(49, "Here's one of the things you needed."))
     else
       say(ines, INES(50, "Here's the other thing you needed."))
@@ -168,8 +171,8 @@ object_inserted = function(name)
     wait(0.3)
     inventory:remove(name)
     ines:start_animation_thread("W_stand")
-    remaining_objects = remaining_objects - 1
-    if remaining_objects == 0 then
+    g.flags.remaining_objects = g.flags.remaining_objects - 1
+    if g.flags.remaining_objects == 0 then
       say(holee, HOLEEGRAM(358, "Yummy!"))
       wait(1)
       say(ines, INES(51, "...what?"))
@@ -185,8 +188,10 @@ object_inserted = function(name)
       ines:start_animation_thread("W_pick_low")
       wait(0.3)
       inventory:add("device_new2")
+      g:saveGame()
       return ines:start_animation_thread("W_stand")
     end
+    g:saveGame()
   end)
 end
 opening.use = {
@@ -199,6 +204,7 @@ opening.use = {
         inventory:remove("device_old")
         ines:start_animation_thread("W_stand")
         g.flags.device_analyzed = true
+        g:saveGame()
         return lc.dialogues:new(require("dialogues.holeegram"))
       else
         return say(ines, INES(53, "Why would I do that?"))

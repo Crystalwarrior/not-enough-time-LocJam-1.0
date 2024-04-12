@@ -12,12 +12,33 @@ local lc = require("engine")
 local scene = Inky.scene()
 local pointer = Inky.pointer(scene)
 local buttons = {
-  back = Button.new(scene)
+  delete_save = Button.new(scene),
+  back = Button.new(scene),
 }
+local clicked_delete_save = false
+local save_file_exists = g:saveGameExists()
+buttons.delete_save.props.text = function()
+  if clicked_delete_save then
+    return TEXT(655, "Are You Sure?")
+  end
+  return TEXT(654, "Delete Save File")
+end
+buttons.delete_save.props.callback = function()
+  if not save_file_exists then
+    return
+  end
+  if not clicked_delete_save then
+    clicked_delete_save = true
+    return
+  end
+  g:wipeGame()
+  save_file_exists = g:saveGameExists()
+end
 buttons.back.props.text = function()
   return TEXT(333, "Return to game")
 end
 buttons.back.props.callback = function()
+  clicked_delete_save = false
   local gui = require("gui")
   g.paused = false
   g:saveOptions()
@@ -112,25 +133,44 @@ M.draw = function(self)
   nineBgmenu:draw(x, y, menu_width, menu_height)
   y = y + 5
   scene:beginFrame()
+
+  if save_file_exists then
+    -- delete save button
+    text = buttons.delete_save.props.text()
+    w = love.graphics.getFont():getWidth(text) * font_scale + 10
+    buttons.delete_save:render(x + (menu_width - w), y, w, Button.height)
+    y = y + Button.height
+  end
+
+  -- music slider
   sliders.volume:render(x, y + Slider.yoffset, slider_width, Slider.height)
   y = print_text(TEXT(335, "Music volume"), x + text_padding + slider_width, y)
   x, y = newline(x, y)
+  -- fullscreen toggle
   checkboxes.fullscreen:render(x, y + Checkbox.yoffset, Checkbox.size.x, Checkbox.size.y)
   y = print_text(TEXT(649, "Fullscreen"), x + text_padding + Checkbox.size.x, y)
   x, y = newline(x, y)
-  checkboxes.skip_left:render(x, y + Checkbox.yoffset, Checkbox.size.x, Checkbox.size.y)
+
+  -- setup for checkboxes
   local atlas = g.interface_atlas
   local mouse_icon_size_x = atlas.ui_mouse_lmb.size.x
-  local mouse_icon_size_y = atlas.ui_mouse_lmb.size.y
+
+  -- skip with LMB
+  checkboxes.skip_left:render(x, y + Checkbox.yoffset, Checkbox.size.x, Checkbox.size.y)
   atlas.ui_mouse_lmb:draw(x + Checkbox.size.x, y)
   y = print_text(TEXT(650, "LMB to Skip dialogues"), x + text_padding + Checkbox.size.x + mouse_icon_size_x, y, menu_width - text_padding - Checkbox.size.x)
   x, y = newline(x, y)
+  -- skip with RMB
   checkboxes.skip_right:render(x, y + Checkbox.yoffset, Checkbox.size.x, Checkbox.size.y)
   atlas.ui_mouse_rmb:draw(x + Checkbox.size.x, y)
-  print_text(TEXT(651, "RMB to Skip dialogues"), x + text_padding + Checkbox.size.x + mouse_icon_size_x, y, menu_width - text_padding - Checkbox.size.x)
+  y = print_text(TEXT(651, "RMB to Skip dialogues"), x + text_padding + Checkbox.size.x + mouse_icon_size_x, y, menu_width - text_padding - Checkbox.size.x)
+  x, y = newline(x, y)
+
+  -- back button
   local text = buttons.back.props.text()
   local w = love.graphics.getFont():getWidth(text) * font_scale + 10
   buttons.back:render(x + (menu_width - w) / 2, menu_padding + menu_height - Button.height, w, Button.height)
+
   scene:finishFrame()
   return love.graphics.pop()
 end
@@ -151,5 +191,8 @@ M.mousemoved = function(self)
   if love.mouse.isDown(1) then
     return pointer:raise("drag")
   end
+end
+M.opened = function(self)
+  save_file_exists = g:saveGameExists()
 end
 return M

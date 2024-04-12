@@ -3,8 +3,6 @@ local lc = require("engine")
 local inventory = require("inventory")
 local Vec2
 Vec2 = lc.steelpan.Vec2
-local cassette_inside = false
-local cassette_room_order = 1
 local M = { }
 M.drawer_setup = function(room)
   local obj = room._objects.drawer
@@ -22,14 +20,14 @@ M.drawer_setup = function(room)
       ines:start_animation_thread("E_pick_low")
       wait(0.2)
       obj:start_animation("open", true)
-      if not cassette_inside or lc.game.room.order < cassette_room_order then
+      if not g.flags.cassette_inside or lc.game.room.order < g.flags.cassette_room_order then
         say(ines, INES(108, "It's empty."))
       else
-        cassette_inside = false
+        g.flags.cassette_inside = false
         say(ines, INES(109, "I'll take the cassette."))
         ines:start_animation_thread("E_pick_low")
         wait(0.2)
-        if lc.game.room.order > cassette_room_order then
+        if lc.game.room.order > g.flags.cassette_room_order then
           inventory:add("cassette_old")
           say(ines, INES(110, "Perfectly ripe."))
           say(ines, INES(111, "Good thing no one used this compartment in all these years."))
@@ -42,6 +40,7 @@ M.drawer_setup = function(room)
       ines:start_animation_thread("E_pick_low")
       wait(0.2)
       obj:start_animation("closed", true)
+      g:saveGame()
       return ines:start_animation_thread("E_stand")
     end)
   end
@@ -49,8 +48,8 @@ M.drawer_setup = function(room)
     cassette = function()
       local ines = g.characters.ines
       return g.blocking_thread(function()
-        cassette_inside = true
-        cassette_room_order = lc.game.room.order
+        g.flags.cassette_inside = true
+        g.flags.cassette_room_order = lc.game.room.order
         say(ines, INES(112, "I'll put it inside."))
         ines:start_animation_thread("E_pick_low")
         wait(0.2)
@@ -65,6 +64,7 @@ M.drawer_setup = function(room)
         ines:start_animation_thread("E_pick_low")
         wait(0.2)
         obj:start_animation("closed", true)
+        g:saveGame()
         return ines:start_animation_thread("E_stand")
       end)
     end,

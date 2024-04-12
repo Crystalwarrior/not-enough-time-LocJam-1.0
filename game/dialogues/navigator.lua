@@ -49,8 +49,8 @@ return {
   end,
   sixties = function()
     switch_room(g.rooms.past, function()
-      if not g.visited_past then
-        g.visited_past = true
+      if not g.flags.visited_past then
+        g.flags.visited_past = true
         ui_inventory.hidden = true
         wait(0.5)
         local wilson = g.rooms.past._objects.wilson
