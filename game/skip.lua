@@ -2,12 +2,14 @@ local g = require("global")
 local M = { }
 g.time_rate = 1
 M.time_rate = 50000
+M.skipping = false
 M.start = function(self)
   self.skippable = true
 end
 M.stop = function(self)
+  M.skipping = false
   self.skippable = false
-  self.skipping = false
+  self.holding = false
   g.time_rate = 1
 end
 M.hold_time = 1
@@ -24,7 +26,7 @@ M.go = function(self)
   if not (self.skippable) then
     return 
   end
-  self.skipping = true
+  M.skipping = true
   g.time_rate = self.time_rate
 end
 M.release_hold = function(self)

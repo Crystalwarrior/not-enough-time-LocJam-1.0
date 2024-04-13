@@ -228,7 +228,9 @@ end
 love.keyreleased = function(key)
   local _exp_0 = key
   if g.key.skip == _exp_0 then
-    g.time_rate = 1
+    if not skip.skipping then
+      g.time_rate = 1
+    end
     speak:stop_skipping()
   elseif g.key.cutscene == _exp_0 then
     skip:release_hold()
