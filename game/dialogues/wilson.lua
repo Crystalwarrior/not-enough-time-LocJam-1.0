@@ -200,7 +200,7 @@ return {
         return options_looking()
       end)
     end
-    if not g.flags.asked_magnets_once and not g.flags.asked_about_magnets then
+    if not g.flags.asked_magnets_once or not g.flags.asked_about_magnets then
       option(ECHO(204, "Magnets. I need magnets."), function()
         g.flags.asked_magnets_once = true
         echo(ines)

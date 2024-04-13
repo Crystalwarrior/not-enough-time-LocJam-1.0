@@ -265,6 +265,7 @@ plant.use = {
     local shake = require("shake")
     return g.blocking_thread(function()
       ines:face2("S")
+      g:saveGame()
       say(ines, INES(90, "So..."))
       say(ines, INES(91, "...I found the working device that I gave uncle Lee in the plant vase."))
       say(ines, INES(92, "Which I guess was actually the very same device I have now."))
