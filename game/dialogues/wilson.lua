@@ -8,6 +8,12 @@ do
 end
 local inventory = require("inventory")
 local asked_band = false
+
+if not g.flags.asked_borrow then
+  -- default value
+  g.flags.asked_borrow = 0
+end
+
 return {
   main = function()
     if not g.flags.talked_to_wilson then

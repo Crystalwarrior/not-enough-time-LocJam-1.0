@@ -41,12 +41,17 @@ device_new2.look_text = function()
   if not g.flags.seen_president then
     return LOOK(121, "Fixed and ready to go.")
   else
+    -- I mean, it works... :P
+    device_new2.interact = nil
     return LOOK(122, "Of course it couldn't be that easy.")
   end
 end
 
 device_new2.interact = function()
-  if g.flags.seen_president then return end
+  if g.flags.seen_president then
+    device_new2.interact = nil
+    return
+  end
 
   local ines = g.characters.ines
   local president_ines = g.characters.president_ines
