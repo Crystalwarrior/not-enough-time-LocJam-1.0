@@ -4,7 +4,10 @@ local utf8 = require("utf8")
 local round
 round = lc.steelpan.utils.math.round
 local wait_after = 0.3
-local time_per_character = 0.1
+local time_per_character
+time_per_character = function()
+  return lc.tr_text.glyph_duration or 0.1
+end
 local tmin = 1
 local box_width = 156
 local distance_from_character = 10
@@ -18,7 +21,7 @@ say = function(character, text, time)
   setfenv(1, g.thread_registry:get_thread_environment())
   t = 0
   local len = utf8.len(text)
-  tmax = time or math.max(time_per_character * len, tmin)
+  tmax = time or math.max(time_per_character() * len, tmin)
   current_character = character
   current_text_lowres = love.graphics.newText(g.font_lowres)
   current_text_hires = love.graphics.newText(g.font_hires)
