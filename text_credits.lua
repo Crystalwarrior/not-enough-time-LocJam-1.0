@@ -23,11 +23,18 @@ t[1] = {
     names_translated = "name1\nname2\nname3\nand so on...",
 }
 
--- t[2] = {
---     title_english = "... by",
---     title_translated = "... by",
---     names_english = "name1\nname2\nname3\nand so on...",
---     names_translated = "name1\nname2\nname3\nand so on...",
--- }
+t[2] = {
+    title_english = "... by",
+    title_translated = "... by",
+    names_english = "name1\nname2\nname3\nand so on...",
+    names_translated = "name1\nname2\nname3\nand so on...",
+}
+
+t[3] = {
+    title_english = "Extra programming by",
+    title_translated = "Дополнительное программирование",
+    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
+    names_translated = "Александр \"Crystalwarrior\" Варнавский",
+}
 
 return t
