@@ -1,7 +1,9 @@
 local g = require("global")
 local lc = require("engine")
-g.volume = 0.5
 local M = { }
+if not g.volume then
+  g.volume = 0.5
+end
 if love.system.getOS() ~= "Web" then
   local fmod = require("fmodstudio")
   if fmod then

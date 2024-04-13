@@ -15,6 +15,9 @@ local M = {
     skip_with_right = false,
     debug = false,
 
+    volume = 0.5,
+    say_speed = 0.5,
+
     flags = {},
     bag = {},
     room = nil,
@@ -26,6 +29,8 @@ M.saveOptions = function()
     local save_data = {
         skip_with_left = M.skip_with_left,
         skip_with_right = M.skip_with_right,
+        volume = M.volume,
+        say_speed = M.say_speed,
     }
     local json_data = json.encode(save_data)
     love.filesystem.write(M.savepath, json_data)
@@ -43,6 +48,8 @@ M.loadOptions = function()
     local save_data = json.decode(data)
     M.skip_with_left = save_data.skip_with_left
     M.skip_with_right = save_data.skip_with_right
+    M.volume = save_data.volume
+    M.say_speed = save_data.say_speed
     print("loading options")
 end
 

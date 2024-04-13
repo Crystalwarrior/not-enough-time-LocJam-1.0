@@ -4,9 +4,13 @@ local utf8 = require("utf8")
 local round
 round = lc.steelpan.utils.math.round
 local wait_after = 0.3
+wait_after = function()
+  return math.max(0.1, 0.3 * (g.say_speed*2))
+end
+
 local time_per_character
 time_per_character = function()
-  return lc.tr_text.glyph_duration or 0.1
+  return (lc.tr_text.glyph_duration or 0.1) * (g.say_speed*2)
 end
 local tmin = 1
 local box_width = 156
@@ -39,7 +43,7 @@ say = function(character, text, time)
   if skipping then
     wait(0.1)
   end
-  return wait(wait_after)
+  return wait(wait_after())
 end
 lc.extend_global_thread_environment({
   say = say
@@ -55,7 +59,7 @@ M.update = function(dt)
     return 
   end
   t = t + dt
-  if t > tmax or (skipping and t > wait_after) then
+  if t > tmax or (skipping and t > wait_after()) then
     return finish()
   end
 end

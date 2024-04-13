@@ -66,13 +66,20 @@ checkboxes.fullscreen.props.callback = function(value)
 end
 
 local sliders = {
-  volume = Slider.new(scene)
+  volume = Slider.new(scene),
+  say_speed = Slider.new(scene),
 }
 local audio = require("audio")
 sliders.volume.props.progress = g.volume
 sliders.volume.props.callback = function(progress)
   return audio.set_volume(progress)
 end
+
+sliders.say_speed.props.progress = g.say_speed
+sliders.say_speed.props.callback = function(progress)
+  g.say_speed = progress
+end
+
 local M = { }
 M.update = function(self)
   pointer:setPosition(g.p.x, g.p.y)
@@ -146,6 +153,10 @@ M.draw = function(self)
   sliders.volume:render(x, y + Slider.yoffset, slider_width, Slider.height)
   y = print_text(TEXT(335, "Music volume"), x + text_padding + slider_width, y)
   x, y = newline(x, y)
+  -- say speed slider
+  sliders.say_speed:render(x, y + Slider.yoffset, slider_width, Slider.height)
+  y = print_text(TEXT(656, "Speech speed"), x + text_padding + slider_width, y)
+  x, y = newline(x, y)
   -- fullscreen toggle
   checkboxes.fullscreen:render(x, y + Checkbox.yoffset, Checkbox.size.x, Checkbox.size.y)
   y = print_text(TEXT(649, "Fullscreen"), x + text_padding + Checkbox.size.x, y)
@@ -194,5 +205,7 @@ M.mousemoved = function(self)
 end
 M.opened = function(self)
   save_file_exists = g:saveGameExists()
+  sliders.volume.props.progress = g.volume
+  sliders.say_speed.props.progress = g.say_speed
 end
 return M
