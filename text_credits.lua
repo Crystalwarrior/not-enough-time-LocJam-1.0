@@ -18,21 +18,21 @@ local t = {}
 
 t[1] = {
     title_english = "Translation by",
-    title_translated = "Translation by",
-    names_english = "name1\nname2\nname3\nand so on...",
-    names_translated = "name1\nname2\nname3\nand so on...",
+    title_translated = "Перевод осуществлён",
+    names_english = "Elizaveta Pobedinskaya\nAlina Khusainova\nSophia Shishatskaya",
+    names_translated = "Елизавета Побединская\nАлина Хусаинова\nСофия Шишацкая",
 }
 
 t[2] = {
-    title_english = "... by",
-    title_translated = "... by",
-    names_english = "name1\nname2\nname3\nand so on...",
-    names_translated = "name1\nname2\nname3\nand so on...",
+    title_english = "Translation by",
+    title_translated = "Перевод осуществлён",
+    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii\nGigalomaniac\nSvetlana Volkova\nValeria Tsyganova\nLika",
+    names_translated = "Александр \"Crystalwarrior\" Варнавский\nGigalomaniac\nСветлана Волкова\nВалерия Цыганова\nЛика",
 }
 
 t[3] = {
-    title_english = "Extra programming by",
-    title_translated = "Дополнительное программирование",
+    title_english = "Translation team leader,\nExtra programming,\nGraphics Localization"
+    title_translated = "Руководитель группы по переводу,\nДополнительное программирование,\nЛокализация Графики"
     names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
     names_translated = "Александр \"Crystalwarrior\" Варнавский",
 }
