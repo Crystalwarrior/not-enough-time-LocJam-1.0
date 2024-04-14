@@ -18,20 +18,34 @@ local t = {}
 
 t[1] = {
     title_english = "Translation by",
-    title_translated = "Translation by",
-    names_english = "name1\nname2\nname3\nand so on...",
-    names_translated = "name1\nname2\nname3\nand so on...",
+    title_translated = "Перевод осуществлён",
+    names_english = "Elizaveta Pobedinskaya\nAlina Khusainova\nSophia Shishatskaya\nLika",
+    names_translated = "Елизавета Побединская\nАлина Хусаинова\nСофия Шишацкая\nЛика",
 }
 
 t[2] = {
-    title_english = "... by",
-    title_translated = "... by",
-    names_english = "name1\nname2\nname3\nand so on...",
-    names_translated = "name1\nname2\nname3\nand so on...",
+    title_english = "Translation by",
+    title_translated = "Перевод осуществлён",
+    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii\nGigalomaniac\nSvetlana Volkova\nValeria Tsyganova",
+    names_translated = "Александр \"Crystalwarrior\" Варнавский\nGigalomaniac\nСветлана Волкова\nВалерия Цыганова",
 }
 
 t[3] = {
-    title_english = "Extra programming by",
+    title_english = "Translation team leader",
+    title_translated = "Руководитель группы по переводу",
+    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
+    names_translated = "Александр \"Crystalwarrior\" Варнавский",
+}
+
+t[4] = {
+    title_english = "Graphics Localization",
+    title_translated = "Локализация Графики",
+    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
+    names_translated = "Александр \"Crystalwarrior\" Варнавский",
+}
+
+t[5] = {
+    title_english = "Extra programming",
     title_translated = "Дополнительное программирование",
     names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
     names_translated = "Александр \"Crystalwarrior\" Варнавский",
