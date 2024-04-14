@@ -194,5 +194,6 @@ M.opened = function(self)
   save_file_exists = g:saveGameExists()
   sliders.volume.props.progress = g.volume
   sliders.say_speed.props.progress = 1 - g.say_speed
+  g.paused = true
 end
 return M

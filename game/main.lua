@@ -110,7 +110,9 @@ g.blocking_thread(function()
     g.rooms.present._objects.navigator.hidden = not g.flags.navigator_available
 
     g.rooms.present._objects.lee.hidden = g.flags.hide_lee
-    g.characters.lee:change_room(nil)
+    if g.rooms.present._objects.lee.hidden then
+      g.characters.lee:change_room(nil)
+    end
 
     if g.flags.collector_distracted then
       local collector = g.characters.collector
