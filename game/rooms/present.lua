@@ -141,4 +141,12 @@ plant.use_nowalk = {
     end)
   end
 }
+
+local car_accessory = room._objects.car_accessory
+-- 1/3rd chance of a silly little guy appearing in your play session
+car_accessory.hidden = love.math.random(3) ~= 1
+car_accessory._image = function()
+  return love.graphics.newImage("assets/single_sprites/cwonker-car-accessory.png")
+end
+
 return room

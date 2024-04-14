@@ -72,6 +72,17 @@ return {
     {
       animations = {
         {
+          frames = {},
+          name = "default"
+        }
+      },
+      baseline = 0,
+      name = "car_accessory",
+      position = {0, 0}
+    },
+    {
+      animations = {
+        {
           frames = {
             "exterior"
           },
