@@ -9,7 +9,7 @@ local M = {
     key = {
         skip = "lctrl",
         cutscene = "space",
-        pause = "escape",
+        pause = "enter",
     },
     skip_with_left = false,
     skip_with_right = false,
