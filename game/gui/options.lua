@@ -47,7 +47,6 @@ end
 local checkboxes = {
   skip_left = Checkbox.new(scene),
   skip_right = Checkbox.new(scene),
-  fullscreen = Checkbox.new(scene)
 }
 checkboxes.skip_left.props.checked = g.skip_with_left
 checkboxes.skip_left.props.callback = function(value)
@@ -56,13 +55,6 @@ end
 checkboxes.skip_right.props.checked = g.skip_with_right
 checkboxes.skip_right.props.callback = function(value)
   g.skip_with_right = value
-end
-checkboxes.fullscreen.props.checked = g.fullscreen
-checkboxes.fullscreen.props.callback = function(value)
-  g.fullscreen = not love.window.getFullscreen()
-  love.window.setFullscreen(g.fullscreen, "desktop")
-  love.resize(love.graphics.getDimensions())
-  return love.mousemoved(love.mouse.getPosition())
 end
 
 local sliders = {
@@ -75,9 +67,9 @@ sliders.volume.props.callback = function(progress)
   return audio.set_volume(progress)
 end
 
-sliders.say_speed.props.progress = g.say_speed
+sliders.say_speed.props.progress = 1 - g.say_speed
 sliders.say_speed.props.callback = function(progress)
-  g.say_speed = progress
+  g.say_speed = 1 - progress
 end
 
 local M = { }
@@ -85,7 +77,6 @@ M.update = function(self)
   pointer:setPosition(g.p.x, g.p.y)
   checkboxes.skip_left.props.checked = g.skip_with_left
   checkboxes.skip_right.props.checked = g.skip_with_right
-  checkboxes.fullscreen.props.checked = g.fullscreen
 end
 local menu_padding = 11
 local menu_width = g.game_width - 2 * menu_padding
@@ -157,10 +148,6 @@ M.draw = function(self)
   sliders.say_speed:render(x, y + Slider.yoffset, slider_width, Slider.height)
   y = print_text(TEXT(656, "Speech speed"), x + text_padding + slider_width, y)
   x, y = newline(x, y)
-  -- fullscreen toggle
-  checkboxes.fullscreen:render(x, y + Checkbox.yoffset, Checkbox.size.x, Checkbox.size.y)
-  y = print_text(TEXT(649, "Fullscreen"), x + text_padding + Checkbox.size.x, y)
-  x, y = newline(x, y)
 
   -- setup for checkboxes
   local atlas = g.interface_atlas
@@ -206,6 +193,6 @@ end
 M.opened = function(self)
   save_file_exists = g:saveGameExists()
   sliders.volume.props.progress = g.volume
-  sliders.say_speed.props.progress = g.say_speed
+  sliders.say_speed.props.progress = 1 - g.say_speed
 end
 return M
