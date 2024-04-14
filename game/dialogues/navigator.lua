@@ -82,11 +82,6 @@ return {
         collector.interact()
         ui_inventory.hidden = false
       end
-      local recorder = g.rooms.collector._objects.recorder
-      if not g.at_recorder_spot and ines._position == recorder.interact_position then
-        ines._position.x = ines._position.x + 4
-        ines._wlk.prev_target = nil
-      end
     end)
     return exit()
   end,

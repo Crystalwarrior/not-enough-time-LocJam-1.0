@@ -114,12 +114,14 @@ g.blocking_thread(function()
       g.characters.lee:change_room(nil)
     end
 
+    local collector = g.characters.collector
     if g.flags.collector_distracted then
-      local collector = g.characters.collector
       collector:start_animation("E_distracted")
       collector._animations["E_talk"]:toggle_visibility("headphones")
       collector._animations["E_stand"]:toggle_visibility("headphones")
       collector._animations["E_distracted"]:toggle_visibility("headphones")
+    elseif g.flags.collector_looking then
+      collector:face2("E")
     end
 
     print("Save data loaded!")

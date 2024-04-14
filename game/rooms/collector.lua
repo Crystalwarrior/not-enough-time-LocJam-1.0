@@ -184,7 +184,6 @@ recorder.interact = function()
   local ines = g.characters.ines
   local c = g.characters.collector
   return g.blocking_thread(function()
-    g.flags.at_recorder_spot = true
     wait(0.3)
     ines:start_animation_thread("take_recorder")
     wait(0.3)
@@ -208,6 +207,9 @@ recorder.interact = function()
     end
   end)
 end
+
+g.recorder_safeframes = 15
+
 g.start_thread(function()
   wait_frame()
   local ines = g.characters.ines
@@ -219,12 +221,16 @@ g.start_thread(function()
         break
       end
       if ines._wlk.moving then
-        c:face2("E")
-        if not g.flags.collector_looking then
-          g.flags.collector_looking = true
-          g.start_thread(function()
-            return say(c, COLLECTOR(384, "Uh, it's you again."))
-          end)
+        g.recorder_safeframes = g.recorder_safeframes - 1
+        if g.recorder_safeframes <= 0 then
+          g.recorder_safeframes = 15
+          c:face2("E")
+          if not g.flags.collector_looking then
+            g.flags.collector_looking = true
+            g.start_thread(function()
+              return say(c, COLLECTOR(384, "Uh, it's you again."))
+            end)
+          end
         end
       end
       if not warning and ines._position.x < 82 then
@@ -241,10 +247,6 @@ g.start_thread(function()
           say(c, COLLECTOR(387, "I don't want you anywhere near my one-of-a-kind poster."))
           warning = false
         end)
-      end
-    else
-      if ines._position ~= recorder.interact_position then
-        g.flags.at_recorder_spot = false
       end
     end
     wait_frame()
