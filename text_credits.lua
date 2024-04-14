@@ -31,8 +31,8 @@ t[2] = {
 }
 
 t[3] = {
-    title_english = "Translation team leader,\nExtra programming,\nGraphics Localization"
-    title_translated = "Руководитель группы по переводу,\nДополнительное программирование,\nЛокализация Графики"
+    title_english = "Translation team leader,\nExtra programming,\nGraphics Localization",
+    title_translated = "Руководитель группы по переводу,\nДополнительное программирование,\nЛокализация Графики",
     names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
     names_translated = "Александр \"Crystalwarrior\" Варнавский",
 }
