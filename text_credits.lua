@@ -17,22 +17,36 @@
 local t = {}
 
 t[1] = {
-    title_english = "Translation by",
-    title_translated = "Перевод осуществлён",
-    names_english = "Elizaveta Pobedinskaya\nAlina Khusainova\nSophia Shishatskaya",
-    names_translated = "Елизавета Побединская\nАлина Хусаинова\nСофия Шишацкая",
+    title_english = "Translation team leader",
+    title_translated = "Руководитель группы по переводу",
+    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
+    names_translated = "Александр \"Crystalwarrior\" Варнавский",
 }
 
 t[2] = {
     title_english = "Translation by",
     title_translated = "Перевод осуществлён",
-    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii\nGigalomaniac\nSvetlana Volkova\nValeria Tsyganova\nLika",
-    names_translated = "Александр \"Crystalwarrior\" Варнавский\nGigalomaniac\nСветлана Волкова\nВалерия Цыганова\nЛика",
+    names_english = "Elizaveta Pobedinskaya\nAlina Khusainova\nSophia Shishatskaya\nLika",
+    names_translated = "Елизавета Побединская\nАлина Хусаинова\nСофия Шишацкая\nЛика",
 }
 
 t[3] = {
-    title_english = "Translation team leader,\nExtra programming,\nGraphics Localization",
-    title_translated = "Руководитель группы по переводу,\nДополнительное программирование,\nЛокализация Графики",
+    title_english = "Translation by",
+    title_translated = "Перевод осуществлён",
+    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii\nGigalomaniac\nSvetlana Volkova\nValeria Tsyganova",
+    names_translated = "Александр \"Crystalwarrior\" Варнавский\nGigalomaniac\nСветлана Волкова\nВалерия Цыганова",
+}
+
+t[4] = {
+    title_english = "Graphics Localization",
+    title_translated = "Локализация Графики",
+    names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
+    names_translated = "Александр \"Crystalwarrior\" Варнавский",
+}
+
+t[5] = {
+    title_english = "Extra programming",
+    title_translated = "Дополнительное программирование",
     names_english = "Aleksandr \"Crystalwarrior\" Varnavskii",
     names_translated = "Александр \"Crystalwarrior\" Варнавский",
 }
